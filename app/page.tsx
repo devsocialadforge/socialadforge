@@ -1,103 +1,62 @@
-import Image from "next/image";
+import ServiceSection from "./components/ServiceSection";
+import ContactSection from "./components/ContactSection";
+import Header from "./components/Header";
+import LeftIntro from "./components/LeftIntro";
+import AboutSection from "./components/AboutSection";
+
+// import AboutSection from "./components/AboutSection"; // Uncomment to add About section
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="w-full min-h-screen bg-black overflow-x-hidden">
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section id="home" className="relative mx-auto w-full h-screen">
+        {/* Spline 3D Background */}
+        <div className="absolute z-0 inset-0 h-full w-full">
+          <iframe
+            src="https://my.spline.design/reactiveorb-s0GzgSco0uSVSXvwMHuJvPQs"
+            title="Reactive Orb"
+            loading="lazy"
+            className="h-full w-full rounded-2xl border-0"
+            allow="autoplay; fullscreen"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute z-5 inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        <div className="absolute z-5 inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+        {/* Content Overlay */}
+        <div className="absolute z-10 inset-0 h-full w-full flex flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-7xl mx-auto">
+            <LeftIntro imageSrc="/my_profile.jpg" />
+          </div>
+        </div>
+
+        {/* Floating Elements - CSS animations for SSR compatibility */}
+        <div className="absolute bottom-10 right-10 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-60 animate-float-1" />
+        <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-gradient-to-r from-pink-400 to-orange-500 rounded-full opacity-40 animate-float-2" />
+
+        {/* Scroll Indicator - CSS animations for SSR compatibility */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-fade-in-delayed">
+          <span className="text-white/60 text-sm mb-2">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-pulse-slow">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-scroll-indicator" />
+          </div>
+        </div>
+      </section>
+
+      <AboutSection />
+      <section className="bg-transparent relative">
+        <ServiceSection />
+      </section>
+
+      {/* Contact Section */}
+      <section className="bg-transparent relative">
+        <ContactSection />
+      </section>
     </div>
   );
 }
