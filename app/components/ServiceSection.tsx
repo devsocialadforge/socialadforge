@@ -100,7 +100,7 @@ export default function ServiceSection() {
   ];
 
   return (
-    <Section id="services" background="dark" className="py-20">
+    <Section id="services" background="dark" className="py-4 md:py-20">
       <div className="text-center mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}

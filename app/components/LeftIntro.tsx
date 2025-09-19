@@ -92,7 +92,7 @@ export default function LeftIntro({
 
         {/* Stats */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
+          className="flex flex-row gap-6 justify-center lg:justify-start"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}

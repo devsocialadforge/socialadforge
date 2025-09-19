@@ -112,7 +112,10 @@ export default function FAQSection() {
   ];
 
   return (
-    <Section background="dark" className="py-20 relative overflow-hidden">
+    <Section
+      background="dark"
+      className="md:py-20 py-4 relative overflow-hidden"
+    >
       <Link href="/#home">
         <motion.button
           className="flex items-center space-x-2 bg-gray-900/80 hover:bg-gray-800/90 backdrop-blur-sm border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"

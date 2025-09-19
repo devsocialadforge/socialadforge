@@ -13,10 +13,7 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="relative mt-10 md:mt-0 mx-auto w-full h-screen"
-      >
+      <section id="home" className="relative  md:mt-0 mx-auto w-full h-screen">
         {/* Spline 3D Background */}
         <div className="absolute z-20 inset-0 h-screen w-full">
           <iframe

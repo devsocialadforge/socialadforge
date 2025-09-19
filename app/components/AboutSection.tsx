@@ -3,11 +3,14 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Section from "./Section";
+import { useState } from "react";
 
 export default function AboutSection() {
-  const paragraph = `I’m passionate about Digital Marketing / Web Development / Design and love helping businesses grow with smart, creative solutions. Over the past three years, I’ve worked on a variety of projects that improved brand visibility, generated more leads, and delivered measurable results. My approach combines creativity with strategy—making sure that every design, campaign, or solution not only looks great but also drives real business outcomes.
+  const [isExpanded, setIsExpanded] = useState(false);
 
-I enjoy working closely with businesses to understand their goals and turn them into actionable strategies. From building strong brand identities to creating campaigns that connect with the right audience, I focus on delivering value at every step. I believe that growth happens when innovation meets consistency, and I’m committed to providing both.
+  const paragraph = `I'm passionate about Digital Marketing / Web Development / Design and love helping businesses grow with smart, creative solutions. Over the past three years, I've worked on a variety of projects that improved brand visibility, generated more leads, and delivered measurable results. My approach combines creativity with strategy—making sure that every design, campaign, or solution not only looks great but also drives real business outcomes.
+
+I enjoy working closely with businesses to understand their goals and turn them into actionable strategies. From building strong brand identities to creating campaigns that connect with the right audience, I focus on delivering value at every step. I believe that growth happens when innovation meets consistency, and I'm committed to providing both.
 
 What excites me most is seeing how small changes—whether in design, messaging, or execution—can create a big impact on business performance. I stay updated with industry trends, tools, and technologies to make sure my work is always modern, effective, and ahead of the curve.
 
@@ -17,7 +20,7 @@ At the core, I value clear communication, long-term relationships, and results t
     <Section
       id="about"
       background="dark"
-      className="py-20 relative overflow-hidden"
+      className="py-4 relative overflow-hidden"
     >
       {/* Soft gradient decorations */}
       <motion.div
@@ -88,15 +91,43 @@ At the core, I value clear communication, long-term relationships, and results t
           >
             Get to Know Me
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-            className="text-white/80 leading-relaxed whitespace-pre-line"
-          >
-            {paragraph}
-          </motion.p>
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              className={`text-white/80 leading-relaxed whitespace-pre-line transition-all duration-300 ${
+                isExpanded ? "" : "line-clamp-4 sm:line-clamp-none"
+              }`}
+            >
+              {paragraph}
+            </motion.p>
+            {/* Show read more/less button only on mobile */}
+            <div className="block sm:hidden mt-4">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200 flex items-center space-x-1"
+              >
+                <span>{isExpanded ? "Read Less" : "Read More"}</span>
+                <motion.svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </motion.svg>
+              </button>
+            </div>
+          </div>
         </motion.div>
       </div>
     </Section>

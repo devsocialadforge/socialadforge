@@ -67,7 +67,7 @@ const Footer = () => {
         viewport={{ once: true, margin: "-100px" }}
       >
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="flex flex-row justify-between flex-wrap gap-8 mb-8">
           {/* Brand Section */}
           <motion.div variants={itemVariants} className="lg:col-span-1">
             <Link href="#home" className="flex items-center space-x-3 mb-4">
@@ -82,8 +82,9 @@ const Footer = () => {
                 SocialAdForge
               </span>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Helping businesses grow their online presence through strategic
+            <p className="text-gray-400 text-sm leading-relaxed text-wrap mb-4">
+              Helping businesses grow their
+              <br /> online presence through strategic <br />
               digital marketing and innovative solutions.
             </p>
             <div className="flex space-x-4">
