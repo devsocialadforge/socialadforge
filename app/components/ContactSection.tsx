@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import Section from "./Section";
-import Button from "./Button";
 import {
   Mail,
   Phone,
@@ -73,7 +72,7 @@ export default function ContactSection() {
       } else {
         setError(result.error || "Failed to send message. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setError("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -178,18 +177,6 @@ export default function ContactSection() {
     },
   };
 
-  const floatAnimation = {
-    animate: {
-      y: [-10, 10, -10],
-      rotate: [0, 5, -5, 0],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
   return (
     <Section
       id="contact"
@@ -234,7 +221,7 @@ export default function ContactSection() {
           variants={itemVariants}
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 relative"
         >
-          <span className="relative z-10">Let's Work Together</span>
+          <span className="relative z-10">Let&apos;s Work Together</span>
           <motion.div
             className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl"
             animate={{
@@ -252,8 +239,8 @@ export default function ContactSection() {
           variants={itemVariants}
           className="text-lg text-white/80 max-w-2xl mx-auto"
         >
-          Ready to take your business to the next level? Get in touch and let's
-          discuss how we can help you achieve your goals.
+          Ready to take your business to the next level? Get in touch and
+          let&apos;s discuss how we can help you achieve your goals.
         </motion.p>
       </motion.div>
 
@@ -276,8 +263,8 @@ export default function ContactSection() {
               Get in Touch
             </h3>
             <p className="text-white/70 leading-relaxed mb-8">
-              We're here to help you succeed. Reach out to us through any of
-              these channels and we'll respond as soon as possible.
+              We&apos;re here to help you succeed. Reach out to us through any
+              of these channels and we&apos;ll respond as soon as possible.
             </p>
           </motion.div>
 
@@ -288,7 +275,7 @@ export default function ContactSection() {
             viewport={{ once: true, margin: "-50px" }}
             className="grid h grid-cols-1 md:grid-cols-2 gap-6"
           >
-            {contactInfo.map((item, index) => {
+            {contactInfo.map((item) => {
               const IconComponent = item.icon;
               return (
                 <motion.div
@@ -360,7 +347,7 @@ export default function ContactSection() {
               viewport={{ once: true }}
               className="flex space-x-4"
             >
-              {socialLinks.map((social, index) => {
+              {socialLinks.map((social) => {
                 const IconComponent = social.icon;
                 return (
                   <motion.a
@@ -491,8 +478,8 @@ export default function ContactSection() {
                   transition={{ delay: 0.5 }}
                   className="text-white/70"
                 >
-                  Thank you for reaching out. We'll get back to you within 24
-                  hours.
+                  Thank you for reaching out. We&apos;ll get back to you within
+                  24 hours.
                 </motion.p>
               </motion.div>
             ) : (
@@ -595,13 +582,14 @@ export default function ContactSection() {
                     htmlFor="service"
                     className="block text-sm font-medium text-white/80 mb-2"
                   >
-                    Service Interested In
+                    Service Interested In *
                   </label>
                   <motion.select
                     id="service"
                     name="service"
                     value={formData.service}
                     onChange={handleInputChange}
+                    required
                     whileFocus={{
                       scale: 1.02,
                       transition: { duration: 0.2 },

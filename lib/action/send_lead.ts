@@ -27,7 +27,8 @@ export async function sendLead(formData: FormData) {
     if (!res.ok) throw new Error("Zapier error");
 
     return { ok: true };
-  } catch (e: any) {
-    return { ok: false, error: e.message };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return { ok: false, error: message };
   }
 }

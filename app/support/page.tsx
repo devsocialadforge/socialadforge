@@ -5,6 +5,7 @@ import { useState } from "react";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 interface FAQItem {
   question: string;
@@ -13,7 +14,7 @@ interface FAQItem {
 
 interface FAQCategory {
   title: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
   items: FAQItem[];
 }
 
@@ -104,7 +105,7 @@ export default function FAQSection() {
         {
           question: "What if I'm not satisfied with the work?",
           answer:
-            "Your satisfaction is our priority. We offer revision rounds as part of our standard service and work closely with you to ensure the final deliverable meets your expectations. We have a satisfaction guarantee and will make necessary adjustments to ensure you're happy with the results.",
+            "Your satisfaction is our priority. We offer revision rounds as part of our standard service and work closely with you to ensure the final deliverable meets your expectations. We have a satisfaction guarantee and will make necessary adjustments to ensure you&apos;re happy with the results.",
         },
       ],
     },
@@ -112,6 +113,28 @@ export default function FAQSection() {
 
   return (
     <Section background="dark" className="py-20 relative overflow-hidden">
+      <Link href="/#home">
+        <motion.button
+          className="flex items-center space-x-2 bg-gray-900/80 hover:bg-gray-800/90 backdrop-blur-sm border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          <span>Back to Home</span>
+        </motion.button>
+      </Link>
       {/* Background decorations */}
       <motion.div
         className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl"
@@ -157,7 +180,7 @@ export default function FAQSection() {
           className="text-lg text-white/80 max-w-2xl mx-auto"
         >
           Find answers to common questions about our services, process, and
-          support. Don't see your question? Feel free to reach out!
+          support. Don&apos;t see your question? Feel free to reach out!
         </motion.p>
       </div>
 
@@ -244,7 +267,7 @@ export default function FAQSection() {
         className="text-center mt-12"
       >
         <p className="text-white/70 mb-6">
-          Still have questions? We're here to help!
+          Still have questions? We&apos;re here to help!
         </p>
         <motion.a
           href="/#contact"

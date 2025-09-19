@@ -147,7 +147,7 @@ export default function ServiceSection() {
           className="w-full max-w-7xl mx-auto"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {services.map((service, index) => {
+            {services.map((service) => {
               const IconComponent = service.icon;
               return (
                 <CarouselItem
@@ -228,7 +228,7 @@ export default function ServiceSection() {
         className="text-center"
       >
         <Button variant="primary" size="lg" href="#contact">
-          Let's Work Together
+          Let&apos;s Work Together
         </Button>
       </motion.div>
     </Section>

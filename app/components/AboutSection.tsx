@@ -46,7 +46,7 @@ At the core, I value clear communication, long-term relationships, and results t
           className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5"
         >
           <Image
-            src="/my_photo.jpg"
+            src="/hero_about.jpg"
             alt="About hero image"
             fill
             className="object-cover"
