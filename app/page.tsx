@@ -44,7 +44,7 @@ export default function Home() {
         <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-gradient-to-r from-pink-400 to-orange-500 rounded-full opacity-40 animate-float-2" />
 
         {/* Scroll Indicator - CSS animations for SSR compatibility */}
-        <div className="absolute hidden bottom-5 left-1/2 transform -translate-x-1/2 md:flex flex-col items-center animate-fade-in-delayed">
+        <div className="absolute z-30 bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-fade-in-delayed">
           <span className="text-white/60 text-sm mb-2">Scroll to explore</span>
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-pulse-slow">
             <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-scroll-indicator" />

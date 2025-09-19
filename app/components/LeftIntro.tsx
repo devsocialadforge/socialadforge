@@ -121,9 +121,9 @@ export default function LeftIntro({
           <Button variant="primary" size="lg" href="#contact">
             Get Started
           </Button>
-          <Button variant="secondary" size="lg" href="#services">
+          {/* <Button variant="secondary" size="lg" href="#services">
             View My Work
-          </Button>
+          </Button> */}
         </motion.div>
       </motion.div>
 
