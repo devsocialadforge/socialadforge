@@ -18,7 +18,7 @@ export default function Home() {
         className="relative mt-10 md:mt-0 mx-auto w-full h-screen"
       >
         {/* Spline 3D Background */}
-        <div className="absolute z-0 inset-0 h-screen w-full">
+        <div className="absolute z-20 inset-0 h-screen w-full">
           <iframe
             src="https://my.spline.design/reactiveorb-s0GzgSco0uSVSXvwMHuJvPQs"
             title="Reactive Orb"
@@ -26,6 +26,9 @@ export default function Home() {
             className="h-screen w-full rounded-2xl border-0"
             allow="autoplay; fullscreen"
           />
+          <div className="w-full max-w-7xl mx-auto z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <LeftIntro imageSrc="/my_profile.jpg" />
+          </div>
         </div>
 
         {/* Gradient Overlay for better text readability */}

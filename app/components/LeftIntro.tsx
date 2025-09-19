@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import Image from "next/image";
+
 import Button from "./Button";
 
 type LeftIntroProps = {
@@ -39,7 +39,6 @@ export default function LeftIntro({
   name = "I'm Salmanul Faris",
   title = "Digital Marketing Expert",
   description = "I help businesses grow their online presence through strategic digital marketing, creative design, and data-driven insights that deliver measurable results.",
-  imageSrc,
   className = "",
 }: LeftIntroProps) {
   return (

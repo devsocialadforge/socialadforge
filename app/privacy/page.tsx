@@ -46,8 +46,8 @@ export default function PrivacyPolicy() {
               Privacy Policy
             </h1>
             <p className="text-gray-300 text-lg sm:text-xl">
-              Your privacy matters to us. Here's how we protect and use your
-              information.
+              Your privacy matters to us. Here&apos;s how we protect and use
+              your information.
             </p>
             <p className="text-gray-400 text-sm mt-2">
               Last updated:{" "}
@@ -418,9 +418,9 @@ export default function PrivacyPolicy() {
                   </h3>
                   <p className="text-gray-300 text-sm">
                     We will notify you of any material changes by posting the
-                    updated Privacy Policy on our website and updating the "Last
-                    updated" date. We encourage you to review this policy
-                    periodically.
+                    updated Privacy Policy on our website and updating the
+                    &quot;Last updated&quot; date. We encourage you to review
+                    this policy periodically.
                   </p>
                 </div>
               </div>
