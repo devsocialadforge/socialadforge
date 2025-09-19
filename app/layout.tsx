@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <WhatsAppChat
+          name="SocialAdForge"
+          profilePicture="/logo.png"
+          message="Hi! Need help growing your brand? Reply here — we’ll get back in minutes."
+          position="bottom-right"
+          phone="+919645551315"
+        />
         {children}
       </body>
     </html>
