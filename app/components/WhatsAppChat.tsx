@@ -1,28 +1,31 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * WhatsAppChat
- * Enhanced floating WhatsApp button with interactive messaging
- * Visitors can type messages or click quick replies to directly open WhatsApp
+ * WhatsAppChat (refined)
+ * - Floating WhatsApp button
+ * - After delay, show a single badge pulse (no auto-open)
+ * - Clicking the button opens a small chat popup
+ * - Quick replies or typed text jump the visitor to WhatsApp with prefilled text
+ * - Cleans up unused code and fixes: hide badge & icon immediately on open
  */
 export type WhatsAppChatProps = {
-  /** Display name shown top of the chat popup */
+  /** Display name shown at the top of the chat popup */
   name: string;
   /** Profile image URL shown at left */
   profilePicture: string;
-  /** Initial message content to display inside the bubble */
+  /** Initial message to display inside the first bubble */
   message: string;
   /** Position of the widget in the viewport */
   position?: "bottom-right" | "bottom-left";
-  /** Delay before badge -> popup sequence (ms) */
+  /** Delay before badge appears (ms) */
   delayMs?: number;
-  /** Phone number for WhatsApp (required for messaging functionality) */
+  /** Phone number for WhatsApp (required). e.g. "+919876543210" */
   phone: string;
-  /** Optional time label under the bubble (e.g., "10:24 AM") */
+  /** Optional time label under the first bubble (e.g., "10:24 AM") */
   time?: string;
-  /** Start closed and do not auto-open even after delay */
+  /** Start closed and do not auto-show badge */
   disableAutoOpen?: boolean;
   /** Quick reply buttons for common messages */
   quickReplies?: string[];
@@ -42,8 +45,8 @@ export default function WhatsAppChat({
   position = "bottom-right",
   delayMs = 3000,
   phone,
-  time,
   disableAutoOpen,
+  time,
   quickReplies = [
     "Hi, I'm interested in your services",
     "Can you tell me about pricing?",
@@ -53,91 +56,72 @@ export default function WhatsAppChat({
 }: WhatsAppChatProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [showBadge, setShowBadge] = useState(false);
-  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
+  const [badgeShownOnce, setBadgeShownOnce] = useState(false);
   const [visitorMessage, setVisitorMessage] = useState("");
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
 
-  // Compute a default time like WhatsApp (HH:MM)
-  const timeLabel = useMemo(() => {
-    if (time) return time;
-    const d = new Date();
-    const hh = d.getHours();
-    const mm = d.getMinutes().toString().padStart(2, "0");
-    const h12 = ((hh + 11) % 12) + 1;
-    const ampm = hh >= 12 ? "PM" : "AM";
-    return `${h12}:${mm} ${ampm}`;
-  }, [time]);
-
-  // Initialize with welcome message
+  // Initialize with welcome message (only once)
   useEffect(() => {
-    if (chatMessages.length === 0) {
-      setChatMessages([
-        {
-          id: "welcome",
-          text: message,
-          isFromVisitor: false,
-          timestamp: new Date(),
-        },
-      ]);
-    }
-  }, [message, chatMessages.length]);
+    setChatMessages([
+      {
+        id: "welcome",
+        text: message,
+        isFromVisitor: false,
+        timestamp: new Date(),
+      },
+    ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Auto sequence: wait -> show badge pulse (but don't auto-open)
+  // After delay, show a single badge pulse; do not auto-open
   useEffect(() => {
-    if (disableAutoOpen || hasAutoPlayed) return;
-
-    const t1 = setTimeout(() => {
+    if (disableAutoOpen || badgeShownOnce) return;
+    const t = setTimeout(() => {
       setShowBadge(true);
-      setHasAutoPlayed(true);
-      // Remove the auto-open timeout - only show badge, don't auto-open
-    }, delayMs);
+      setBadgeShownOnce(true);
+    }, Math.max(0, delayMs));
+    return () => clearTimeout(t);
+  }, [delayMs, disableAutoOpen, badgeShownOnce]);
 
-    return () => clearTimeout(t1);
-  }, [delayMs, disableAutoOpen, hasAutoPlayed]);
+  const normalizePhone = (p: string) => p.replace(/\D/g, "");
 
   const openWhatsApp = (messageToSend: string) => {
     const encodedMessage = encodeURIComponent(messageToSend);
-    const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${normalizePhone(
+      phone
+    )}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
-    setIsOpen(false); // Close the chat popup after opening WhatsApp
+    // Close popup after opening WhatsApp (and keep badge hidden)
+    setIsOpen(false);
+    setShowBadge(false);
   };
 
   const handleSendMessage = (messageText: string) => {
     if (!messageText.trim()) return;
-
-    // Add visitor message to chat history
     const newMessage: ChatMessage = {
       id: Date.now().toString(),
       text: messageText,
       isFromVisitor: true,
       timestamp: new Date(),
     };
-
     setChatMessages((prev) => [...prev, newMessage]);
     setVisitorMessage("");
-
-    // Directly open WhatsApp with the message
     openWhatsApp(messageText);
   };
 
   const handleQuickReply = (reply: string) => {
-    // Add visitor message to chat history
     const newMessage: ChatMessage = {
       id: Date.now().toString(),
       text: reply,
       isFromVisitor: true,
       timestamp: new Date(),
     };
-
     setChatMessages((prev) => [...prev, newMessage]);
-
-    // Directly open WhatsApp with the quick reply
     openWhatsApp(reply);
   };
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  };
+  const formatTime = (date: Date) =>
+    date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
   const isRight = position === "bottom-right";
 
@@ -150,7 +134,7 @@ export default function WhatsAppChat({
       ].join(" ")}
       aria-live="polite"
     >
-      {/* Floating WhatsApp button - Hide when chat is open */}
+      {/* Floating WhatsApp button - hidden when chat is open */}
       <AnimatePresence>
         {!isOpen && (
           <motion.div
@@ -158,19 +142,22 @@ export default function WhatsAppChat({
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="relative"
+            className=" absolute bottom-0 right-0"
           >
             <motion.button
               type="button"
               aria-label="Open WhatsApp chat"
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(true);
+                setShowBadge(false); // ensure badge hides immediately on open
+              }}
               whileTap={{ scale: 0.95 }}
               className="h-14 w-14 rounded-full bg-green-500 shadow-lg shadow-green-500/30 grid place-items-center text-white"
             >
               <WhatsAppIcon className="h-7 w-7" />
             </motion.button>
 
-            {/* Badge animation - Only show when button is visible and badge is true */}
+            {/* Badge animation - visible only while button is visible */}
             <AnimatePresence>
               {showBadge && (
                 <motion.span
@@ -221,7 +208,10 @@ export default function WhatsAppChat({
                 <p className="text-[11px] opacity-80">online</p>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowBadge(false); // keep badge hidden after close
+                }}
                 aria-label="Close chat"
                 className="text-white/90 rounded-md p-1 transition-opacity hover:opacity-80"
               >
@@ -231,7 +221,7 @@ export default function WhatsAppChat({
 
             {/* Chat Messages */}
             <div className="relative px-3 py-4 bg-[#ECE5DD] max-h-80 overflow-y-auto">
-              {chatMessages.map((msg, index) => (
+              {chatMessages.map((msg) => (
                 <div
                   key={msg.id}
                   className={`mb-3 ${
@@ -260,7 +250,7 @@ export default function WhatsAppChat({
                           msg.isFromVisitor ? "justify-end" : "justify-start"
                         }`}
                       >
-                        <span>{formatTime(msg.timestamp)}</span>
+                        <span>{time || formatTime(msg.timestamp)}</span>
                       </div>
                       {/* Bubble tail */}
                       <span
@@ -276,7 +266,7 @@ export default function WhatsAppChat({
                 </div>
               ))}
 
-              {/* Quick Reply Buttons */}
+              {/* Quick Reply Buttons (only when only the welcome exists) */}
               {chatMessages.length <= 1 && (
                 <div className="space-y-2 mt-4">
                   <p className="text-xs text-slate-600 text-center">
@@ -302,9 +292,9 @@ export default function WhatsAppChat({
                   type="text"
                   value={visitorMessage}
                   onChange={(e) => setVisitorMessage(e.target.value)}
-                  onKeyPress={(e) =>
-                    e.key === "Enter" && handleSendMessage(visitorMessage)
-                  }
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSendMessage(visitorMessage);
+                  }}
                   placeholder="Type your message..."
                   className="flex-1 px-3 py-2 text-xs border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 />
@@ -357,7 +347,7 @@ function SendIcon({ className = "" }: { className?: string }) {
 }
 
 /**
- * Enhanced usage example:
+ * Example usage:
  *
  * <WhatsAppChat
  *   name="SocialAdForge"
@@ -368,7 +358,7 @@ function SendIcon({ className = "" }: { className?: string }) {
  *     "I need digital marketing services",
  *     "What are your packages?",
  *     "Can you help with social media?",
- *     "I want to schedule a consultation"
+ *     "I want to schedule a consultation",
  *   ]}
  * />
  */

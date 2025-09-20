@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="w-full min-h-screen bg-black text-white">
+    <div className="w-full min-h-screen text-white">
       {/* Back to Home Button */}
       <div className="fixed top-4 left-4 z-50">
         <motion.div
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
       </div>
 
       {/* Main Content */}
-      <main className="pt-20 pb-16">
+      <main className=" relative pt-20 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="text-center mb-12">
