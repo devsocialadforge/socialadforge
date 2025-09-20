@@ -10,10 +10,6 @@ interface SmallSphereProps {
   index: number;
 }
 
-interface SphereOfSpheresProps {}
-
-interface AmbientParticlesProps {}
-
 // Individual sphere component
 function SmallSphere({ position, index }: SmallSphereProps) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -56,7 +52,7 @@ function SmallSphere({ position, index }: SmallSphereProps) {
 }
 
 // Main sphere container
-function SphereOfSpheres({}: SphereOfSpheresProps) {
+function SphereOfSpheres() {
   const groupRef = useRef<THREE.Group>(null);
 
   // Generate positions for spheres arranged in a larger sphere
@@ -111,7 +107,7 @@ function SphereOfSpheres({}: SphereOfSpheresProps) {
 }
 
 // Ambient particles for extra effect
-function AmbientParticles({}: AmbientParticlesProps) {
+function AmbientParticles() {
   const pointsRef = useRef<THREE.Points>(null);
 
   const particleCount = 300;
