@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 
 const Header = () => {
@@ -44,7 +45,7 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="flex items-center space-x-3">
+              <Link href="/" className="flex items-center space-x-3">
                 <motion.div
                   className="relative w-8 h-8 flex-shrink-0"
                   initial={{ rotate: 0 }}
@@ -68,7 +69,7 @@ const Header = () => {
                 >
                   SocialAdForge
                 </motion.span>
-              </div>
+              </Link>
             </motion.div>
 
             {/* Desktop Navigation Menu */}
@@ -79,27 +80,30 @@ const Header = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               {[
-                { href: "#home", label: "Home" },
-                { href: "#services", label: "Services" },
-                { href: "#about", label: "About" },
+                { href: "/#home", label: "Home" },
+                { href: "/#services", label: "Services" },
+                { href: "/#about", label: "About" },
                 { href: "/support", label: "FAQ" },
-                { href: "#contact", label: "Contact" },
+                { href: "/#contact", label: "Contact" },
               ].map((item, index) => (
-                <motion.a
+                <motion.div
                   key={item.href}
-                  href={item.href}
-                  className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
                   whileHover={{ y: -2 }}
                 >
-                  {item.label}
-                  <motion.div
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300"
-                    whileHover={{ width: "100%" }}
-                  />
-                </motion.a>
+                  <Link
+                    href={item.href}
+                    className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group"
+                  >
+                    {item.label}
+                    <motion.div
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300"
+                      whileHover={{ width: "100%" }}
+                    />
+                  </Link>
+                </motion.div>
               ))}
             </motion.nav>
 
@@ -158,20 +162,23 @@ const Header = () => {
                       { href: "/#services", label: "Services" },
                       { href: "/#about", label: "About" },
                       { href: "/support", label: "FAQ" },
-                      { href: "#contact", label: "Contact" },
+                      { href: "/#contact", label: "Contact" },
                     ].map((item, index) => (
-                      <motion.a
+                      <motion.div
                         key={item.href}
-                        href={item.href}
-                        onClick={closeMobileMenu}
-                        className="text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium py-2 border-b border-gray-800/50 last:border-b-0"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        {item.label}
-                      </motion.a>
+                        <Link
+                          href={item.href}
+                          onClick={closeMobileMenu}
+                          className="text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium py-2 border-b border-gray-800/50 last:border-b-0 block"
+                        >
+                          {item.label}
+                        </Link>
+                      </motion.div>
                     ))}
                   </nav>
 
