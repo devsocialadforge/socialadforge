@@ -126,7 +126,7 @@ function Scene({
 
   // Keep aspect uniform in sync
   useEffect(() => {
-    (rippleMaterial.uniforms.aspect as any).value = aspect;
+    (rippleMaterial.uniforms.aspect as THREE.IUniform).value = aspect;
   }, [aspect, rippleMaterial.uniforms.aspect]);
 
   // Double-click → add ripple
