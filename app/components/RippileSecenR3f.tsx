@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Icosahedron, useCursor } from "@react-three/drei";
+import { OrbitControls, Icosahedron } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { ShaderPass } from "postprocessing";
 import * as THREE from "three";

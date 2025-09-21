@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 /**
  * WhatsAppChat (refined)
@@ -198,9 +199,11 @@ export default function WhatsAppChat({
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3 bg-[#075E54] text-white">
-              <img
+              <Image
                 src={profilePicture}
                 alt="Profile picture"
+                width={32}
+                height={32}
                 className="h-8 w-8 rounded-full object-cover"
               />
               <div className="flex-1">
