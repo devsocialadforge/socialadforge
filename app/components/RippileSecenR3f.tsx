@@ -277,7 +277,7 @@ export default function RippleSceneR3F({
   position = "center",
   scale = [1, 1, 1],
 }: RippleSceneR3FProps) {
-  const [setHover] = useState(false);
+  const [_, setHover] = useState(false);
   // Remove this line: useCursor(hover);
 
   return (
