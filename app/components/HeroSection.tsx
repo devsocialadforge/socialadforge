@@ -32,7 +32,7 @@ export default function HeroSection() {
         </div>
       </div>
       {/* Content Overlay - Centered LeftIntro */}
-      <div className=" relative w-fit z-50 mt-20 px-4 sm:px-6 lg:px-8">
+      <div className=" relative w-fit z-50 md:mt-20 px-4 sm:px-6 lg:px-8">
         <LeftIntro imageSrc="/my_profile.jpg" />
       </div>
     </Section>
