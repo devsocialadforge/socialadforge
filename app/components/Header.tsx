@@ -2,11 +2,15 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { services } from "@/lib/data";
 // Removed Motion - using CSS animations instead
+
+// Services data imported from ServiceSection
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,23 +63,88 @@ const Header = () => {
             <nav className="hidden lg:flex items-center space-x-8 animate-in fade-in slide-in-from-top-2 duration-500 delay-300">
               {[
                 { href: "/#home", label: "Home" },
-                { href: "/#services", label: "Services" },
+                { href: "/#services", label: "Services", hasDropdown: true },
                 { href: "/#about", label: "About" },
                 { href: "/support", label: "FAQ" },
                 { href: "/#contact", label: "Contact" },
               ].map((item, index) => (
                 <div
                   key={item.href}
-                  className="animate-in fade-in slide-in-from-top-2 duration-300 transform transition-transform hover:-translate-y-0.5"
+                  className="animate-in fade-in slide-in-from-top-2 duration-300 transform transition-transform hover:-translate-y-0.5 relative"
                   style={{ animationDelay: `${400 + index * 100}ms` }}
                 >
-                  <Link
-                    href={item.href}
-                    className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group"
-                  >
-                    {item.label}
-                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300" />
-                  </Link>
+                  {item.hasDropdown ? (
+                    // Services with dropdown
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsServicesHovered(true)}
+                      onMouseLeave={() => setIsServicesHovered(false)}
+                    >
+                      <Link
+                        href={item.href}
+                        className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group flex items-center"
+                      >
+                        {item.label}
+                        <svg
+                          className={`ml-1 w-4 h-4 transition-transform duration-200 ${
+                            isServicesHovered ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                        <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300" />
+                      </Link>
+
+                      {/* Services Dropdown */}
+                      {isServicesHovered && (
+                        <div className="absolute top-full left-0 mt-2 w-80 bg-black/95 backdrop-blur-md border border-gray-800 rounded-xl shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+                          <div className="p-4">
+                            <h3 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">
+                              Our Services
+                            </h3>
+                            <div className="grid grid-cols-1 gap-2">
+                              {services.map((service) => (
+                                <Link
+                                  key={service.title}
+                                  href="#services"
+                                  className="block p-3 rounded-lg hover:bg-white/5 transition-colors duration-200 group"
+                                >
+                                  <div className="text-white font-medium text-sm group-hover:text-blue-300 transition-colors duration-200">
+                                    {service.title}
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                            <div className="mt-4 pt-3 border-t border-gray-800">
+                              <Link
+                                href="#services"
+                                className="block w-full text-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+                              >
+                                View All Services
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    // Regular navigation items
+                    <Link
+                      href={item.href}
+                      className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group"
+                    >
+                      {item.label}
+                      <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300" />
+                    </Link>
+                  )}
                 </div>
               ))}
             </nav>

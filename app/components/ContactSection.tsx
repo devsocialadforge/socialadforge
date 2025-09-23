@@ -36,13 +36,16 @@ function useScrollAnimation() {
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    // Capture the current value of ref.current
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      // Use the captured value in cleanup
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
