@@ -21,7 +21,7 @@ export default function LeftIntro({
 }: LeftIntroProps) {
   return (
     <div
-      className={`flex flex-col lg:flex-row items-center gap-12 ${className}`}
+      className={`flex flex-col w-fit lg:flex-row items-center gap-12 ${className}`}
     >
       {/* Left Content */}
       <div className="flex-1 text-center lg:text-left space-y-6 animate-slide-in-left">

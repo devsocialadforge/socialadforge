@@ -20,17 +20,6 @@ export default function HeroSection() {
         <RippleSceneR3F position="center" scale={[1.5, 1.5, 1.5]} />
       </div>
 
-      {/* Gradient Overlay for better text readability */}
-      <div className="absolute z-10 inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-      <div className="absolute z-10 inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-      {/* Content Overlay - Centered LeftIntro */}
-      <div className="absolute z-20 inset-0 h-full w-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-7xl mx-auto">
-          <LeftIntro imageSrc="/my_profile.jpg" />
-        </div>
-      </div>
-
       {/* Floating Elements - CSS animations for SSR compatibility */}
       <div className="absolute z-30 bottom-10 right-10 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-60 animate-float-1" />
       <div className="absolute z-30 top-1/4 right-1/4 w-2 h-2 bg-gradient-to-r from-pink-400 to-orange-500 rounded-full opacity-40 animate-float-2" />
@@ -41,6 +30,10 @@ export default function HeroSection() {
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center animate-pulse-slow">
           <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-scroll-indicator" />
         </div>
+      </div>
+      {/* Content Overlay - Centered LeftIntro */}
+      <div className=" relative w-fit z-50 mt-20 px-4 sm:px-6 lg:px-8">
+        <LeftIntro imageSrc="/my_profile.jpg" />
       </div>
     </Section>
   );
