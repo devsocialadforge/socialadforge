@@ -67,7 +67,7 @@ export default function LeftIntro({
             <div className="text-white/60 text-sm">Happy Clients</div>
           </div>
           <div className="text-center lg:text-left">
-            <div className="text-3xl font-bold text-green-400">3+</div>
+            <div className="text-3xl font-bold text-green-400">2+</div>
             <div className="text-white/60 text-sm">Years Experience</div>
           </div>
         </div>

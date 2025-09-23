@@ -4,14 +4,6 @@
 import Section from "./Section";
 import Card from "./Card";
 import Button from "./Button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { services } from "@/lib/data";
 import { useState, useEffect, useRef } from "react";
 
@@ -75,96 +67,103 @@ export default function ServiceSection() {
           </p>
         </div>
 
-        {/* Carousel Section */}
+        {/* Services Grid */}
         <div
-          className={`mb-16 scroll-scale-in scroll-delay-300 ${
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16 scroll-scale-in scroll-delay-300 ${
             isVisible ? "in-view" : ""
           }`}
         >
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-                stopOnInteraction: false,
-                stopOnMouseEnter: false,
-              }),
-            ]}
-            className="w-full max-w-7xl mx-auto"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {services.map((service, index) => {
-                const IconComponent = service.icon;
-                return (
-                  <CarouselItem
-                    key={service.title}
-                    className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                  >
-                    <div className="group h-full hover:-translate-y-2 hover:scale-102 hover:rotate-y-1 transition-all duration-300">
-                      <Card
-                        delay={index * 0.1}
-                        className="h-full relative overflow-hidden"
+          {services.map((service, index) => {
+            const IconComponent = service.icon;
+            return (
+              <div
+                key={service.title}
+                className={`group h-full transform transition-all duration-500 hover:-translate-y-2 hover:scale-105 scroll-fade-in-up scroll-delay-${
+                  400 + index * 100
+                } ${isVisible ? "in-view" : ""}`}
+              >
+                <Card
+                  delay={index * 0.1}
+                  className="h-full relative overflow-hidden cursor-pointer"
+                >
+                  {/* Gradient background overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-all duration-700 ease-in-out`}
+                  />
+
+                  {/* Default state - Icon and Title */}
+                  <div className="relative z-10 h-full flex flex-col items-center justify-center text-center p-6 transition-all duration-700 ease-in-out group-hover:transform group-hover:-translate-y-2 group-hover:opacity-0">
+                    {/* Icon with enhanced styling */}
+                    <div className="mb-6">
+                      <div
+                        className={`
+                        inline-flex items-center justify-center w-20 h-20 
+                        bg-gradient-to-br ${service.gradient} 
+                        rounded-3xl text-white shadow-lg 
+                        transform transition-all duration-500 ease-in-out
+                        group-hover:scale-110 group-hover:rotate-3
+                      `}
                       >
-                        {/* Gradient background overlay */}
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                        />
-
-                        {/* Icon with enhanced styling */}
-                        <div className="relative z-10 mb-6">
-                          <div
-                            className={`
-                          inline-flex items-center justify-center w-16 h-16 
-                          bg-gradient-to-br ${service.gradient} 
-                          rounded-2xl text-white shadow-lg 
-                          group-hover:shadow-xl group-hover:scale-110 
-                          transition-all duration-300
-                        `}
-                          >
-                            <IconComponent size={28} />
-                          </div>
-                          {/* Floating glow effect */}
-                          <div
-                            className={`
-                          absolute inset-0 w-16 h-16 
-                          bg-gradient-to-br ${service.gradient} 
-                          rounded-2xl opacity-0 group-hover:opacity-30 
-                          blur-xl transition-all duration-500
-                        `}
-                          />
-                        </div>
-
-                        {/* Content */}
-                        <div className="relative z-10">
-                          <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
-                            {service.title}
-                          </h3>
-                          <p className="text-white/70 leading-relaxed group-hover:text-white/90 transition-colors duration-300">
-                            {service.description}
-                          </p>
-                        </div>
-
-                        {/* Hover effects */}
-                        <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-300" />
-                        <div
-                          className="absolute bottom-4 left-4 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-300"
-                          style={{ animationDelay: "0.3s" }}
-                        />
-
-                        {/* Border glow on hover */}
-                        <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-400/30 transition-all duration-300" />
-                      </Card>
+                        <IconComponent size={32} />
+                      </div>
+                      {/* Floating glow effect */}
+                      <div
+                        className={`
+                        absolute inset-0 w-20 h-20 mx-auto
+                        bg-gradient-to-br ${service.gradient} 
+                        rounded-3xl opacity-0 group-hover:opacity-40 
+                        blur-xl transition-all duration-700 ease-in-out
+                        transform group-hover:scale-125
+                      `}
+                      />
                     </div>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12 border-white/20 bg-white/10 hover:bg-white/20 text-white" />
-            <CarouselNext className="hidden md:flex -right-12 border-white/20 bg-white/10 hover:bg-white/20 text-white" />
-          </Carousel>
+
+                    <h3 className="text-xl font-semibold text-white mb-2 transition-all duration-500 group-hover:text-blue-300">
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  {/* Hover state - Description */}
+                  <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-6 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 ease-in-out">
+                    {/* Small icon in hover state */}
+                    <div className="mb-4">
+                      <div
+                        className={`
+                        inline-flex items-center justify-center w-12 h-12 
+                        bg-gradient-to-br ${service.gradient} 
+                        rounded-xl text-white shadow-lg 
+                        transform transition-all duration-300
+                      `}
+                      >
+                        <IconComponent size={20} />
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-white mb-4 transform transition-all duration-500">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-white/80 leading-relaxed text-sm transform transition-all duration-700 delay-100">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-all duration-500" />
+                  <div
+                    className="absolute bottom-4 left-4 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-all duration-500"
+                    style={{ animationDelay: "0.3s" }}
+                  />
+
+                  {/* Border glow on hover */}
+                  <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-400/30 transition-all duration-500" />
+
+                  {/* Subtle shine effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-all duration-1000 ease-in-out" />
+                </Card>
+              </div>
+            );
+          })}
         </div>
 
         <div

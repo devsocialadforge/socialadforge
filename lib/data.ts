@@ -11,6 +11,11 @@ import { Megaphone } from "lucide-react";
 import { Sparkles } from "lucide-react";
 import { Crown } from "lucide-react";
 
+// Tailwind classes used in gradients (keep these comments for Tailwind to detect):
+// from-blue-500 to-cyan-500 from-purple-500 to-pink-500 from-green-500 to-emerald-500
+// from-orange-500 to-red-500 from-teal-500 to-blue-500 from-indigo-500 to-purple-500
+// from-violet-500 bg-gradient-to-br
+
 export const services = [
   {
     title: "Digital Marketing",
@@ -55,31 +60,10 @@ export const services = [
     gradient: "from-indigo-500 to-purple-500",
   },
   {
-    title: "Branding",
-    description:
-      "Complete brand identity development that creates memorable experiences and builds lasting customer loyalty.",
-    icon: Sparkles,
-    gradient: "from-yellow-500 to-orange-500",
-  },
-  {
-    title: "Influencer Marketing",
-    description:
-      "Authentic influencer partnerships that expand your reach, build trust, and drive engagement with your target audience.",
-    icon: Crown,
-    gradient: "from-pink-500 to-rose-500",
-  },
-  {
     title: "App Development",
     description:
       "Native and cross-platform mobile applications that deliver exceptional user experiences and business value.",
     icon: AppleIcon,
     gradient: "from-violet-500 to-purple-500",
-  },
-  {
-    title: "Performance Marketing",
-    description:
-      "Data-driven marketing campaigns focused on measurable results, ROI optimization, and sustainable growth.",
-    icon: TrendingUp,
-    gradient: "from-emerald-500 to-teal-500",
   },
 ];
