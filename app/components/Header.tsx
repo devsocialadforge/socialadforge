@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
+// Removed Motion - using CSS animations instead
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -27,11 +27,8 @@ const Header = () => {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 animate-in slide-in-from-top-full fade-in duration-600 ${
           isScrolled
             ? "bg-black/95 backdrop-blur-md border-b border-gray-800"
             : "bg-black/90 backdrop-blur-sm border-b border-gray-800/50"
@@ -40,18 +37,9 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <motion.div
-              className="flex items-center flex-shrink-0"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div className="flex items-center flex-shrink-0 transform transition-all duration-200 hover:scale-105">
               <Link href="/" className="flex items-center space-x-3">
-                <motion.div
-                  className="relative w-8 h-8 flex-shrink-0"
-                  initial={{ rotate: 0 }}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div className="relative w-8 h-8 flex-shrink-0 transform transition-transform duration-600 hover:rotate-360">
                   <Image
                     src="/logo.png"
                     alt="SocialAdForge Logo"
@@ -60,25 +48,15 @@ const Header = () => {
                     className="object-contain"
                     priority
                   />
-                </motion.div>
-                <motion.span
-                  className="text-xl font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
+                </div>
+                <span className="text-xl font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-in fade-in slide-in-from-left-5 duration-500 delay-200">
                   SocialAdForge
-                </motion.span>
+                </span>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Desktop Navigation Menu */}
-            <motion.nav
-              className="hidden lg:flex items-center space-x-8"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
+            <nav className="hidden lg:flex items-center space-x-8 animate-in fade-in slide-in-from-top-2 duration-500 delay-300">
               {[
                 { href: "/#home", label: "Home" },
                 { href: "/#services", label: "Services" },
@@ -86,26 +64,21 @@ const Header = () => {
                 { href: "/support", label: "FAQ" },
                 { href: "/#contact", label: "Contact" },
               ].map((item, index) => (
-                <motion.div
+                <div
                   key={item.href}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                  whileHover={{ y: -2 }}
+                  className="animate-in fade-in slide-in-from-top-2 duration-300 transform transition-transform hover:-translate-y-0.5"
+                  style={{ animationDelay: `${400 + index * 100}ms` }}
                 >
                   <Link
                     href={item.href}
                     className="relative text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium group"
                   >
                     {item.label}
-                    <motion.div
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300"
-                      whileHover={{ width: "100%" }}
-                    />
+                    <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 group-hover:w-full transition-all duration-300" />
                   </Link>
-                </motion.div>
+                </div>
               ))}
-            </motion.nav>
+            </nav>
 
             {/* Mobile menu button */}
             <div className="lg:hidden">
@@ -144,77 +117,57 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              className="lg:hidden overflow-hidden"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <div className="bg-black/95 backdrop-blur-md border-t border-gray-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-                  {/* Mobile Navigation Links */}
-                  <nav className="flex flex-col space-y-4 mb-6">
-                    {[
-                      { href: "/#home", label: "Home" },
-                      { href: "/#services", label: "Services" },
-                      { href: "/#about", label: "About" },
-                      { href: "/support", label: "FAQ" },
-                      { href: "/#contact", label: "Contact" },
-                    ].map((item, index) => (
-                      <motion.div
-                        key={item.href}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Link
-                          href={item.href}
-                          onClick={closeMobileMenu}
-                          className="text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium py-2 border-b border-gray-800/50 last:border-b-0 block"
-                        >
-                          {item.label}
-                        </Link>
-                      </motion.div>
-                    ))}
-                  </nav>
-
-                  {/* Mobile Buttons */}
-                  <div className="flex flex-col space-y-3 pt-4 border-t border-gray-800/50">
-                    <motion.button
-                      onClick={closeMobileMenu}
-                      className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-full text-base font-medium transition-all duration-200 text-center shadow-lg"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.7 }}
-                      whileTap={{ scale: 0.95 }}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden overflow-hidden animate-in slide-in-from-top-0 fade-in duration-300">
+            <div className="bg-black/95 backdrop-blur-md border-t border-gray-800">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+                {/* Mobile Navigation Links */}
+                <nav className="flex flex-col space-y-4 mb-6">
+                  {[
+                    { href: "/#home", label: "Home" },
+                    { href: "/#services", label: "Services" },
+                    { href: "/#about", label: "About" },
+                    { href: "/support", label: "FAQ" },
+                    { href: "/#contact", label: "Contact" },
+                  ].map((item, index) => (
+                    <div
+                      key={item.href}
+                      className="animate-in fade-in slide-in-from-left-5 duration-300 transform transition-transform active:scale-95"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      Start Project
-                    </motion.button>
-                  </div>
+                      <Link
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className="text-gray-300 hover:text-white transition-colors duration-200 text-base font-medium py-2 border-b border-gray-800/50 last:border-b-0 block"
+                      >
+                        {item.label}
+                      </Link>
+                    </div>
+                  ))}
+                </nav>
+
+                {/* Mobile Buttons */}
+                <div className="flex flex-col space-y-3 pt-4 border-t border-gray-800/50">
+                  <button
+                    onClick={closeMobileMenu}
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-full text-base font-medium transition-all text-center shadow-lg animate-in fade-in slide-in-from-bottom-5 duration-300 delay-700 transform active:scale-95"
+                  >
+                    Start Project
+                  </button>
                 </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
+            </div>
+          </div>
+        )}
+      </header>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={closeMobileMenu}
-          />
-        )}
-      </AnimatePresence>
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden animate-in fade-in duration-300"
+          onClick={closeMobileMenu}
+        />
+      )}
     </>
   );
 };

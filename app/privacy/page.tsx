@@ -1,23 +1,15 @@
 "use client";
 import Link from "next/link";
-import { motion } from "motion/react";
+// Removed Motion - using CSS animations instead
 
 export default function PrivacyPolicy() {
   return (
     <div className="w-full min-h-screen text-white">
       {/* Back to Home Button */}
       <div className="fixed top-4 left-4 z-50">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <Link href="/#home">
-            <motion.button
-              className="flex items-center space-x-2 bg-gray-900/80 hover:bg-gray-800/90 backdrop-blur-sm border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <button className="flex items-center space-x-2 bg-gray-900/80 hover:bg-gray-800/90 backdrop-blur-sm border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium hover:scale-105 active:scale-95">
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -32,24 +24,30 @@ export default function PrivacyPolicy() {
                 />
               </svg>
               <span>Back to Home</span>
-            </motion.button>
+            </button>
           </Link>
-        </motion.div>
+        </div>
       </div>
 
       {/* Main Content */}
-      <main className=" relative pt-20 pb-16">
+      <main className="relative pt-20 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="text-center mb-12">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent animate-fade-in-up">
               Privacy Policy
             </h1>
-            <p className="text-gray-300 text-lg sm:text-xl">
+            <p
+              className="text-gray-300 text-lg sm:text-xl animate-fade-in-up"
+              style={{ animationDelay: "0.2s" }}
+            >
               Your privacy matters to us. Here&apos;s how we protect and use
               your information.
             </p>
-            <p className="text-gray-400 text-sm mt-2">
+            <p
+              className="text-gray-400 text-sm mt-2 animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
               Last updated:{" "}
               {new Date().toLocaleDateString("en-US", {
                 year: "numeric",
@@ -62,7 +60,10 @@ export default function PrivacyPolicy() {
           {/* Content Sections */}
           <div className="space-y-8">
             {/* Introduction */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "0.6s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Introduction
               </h2>
@@ -83,7 +84,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Information We Collect */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "0.8s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Information We Collect
               </h2>
@@ -138,7 +142,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* How We Use Your Information */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "1.0s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 How We Use Your Information
               </h2>
@@ -182,7 +189,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Cookies */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "1.2s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Cookies and Tracking Technologies
               </h2>
@@ -237,7 +247,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Third-Party Services */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "1.4s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Third-Party Services
               </h2>
@@ -273,7 +286,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Data Security */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "1.6s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Data Security
               </h2>
@@ -322,7 +338,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Your Rights */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "1.8s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Your Rights
               </h2>
@@ -371,7 +390,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Data Retention */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "2.0s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Data Retention
               </h2>
@@ -402,7 +424,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Changes to Privacy Policy */}
-            <section className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <section
+              className="bg-gray-900/50 rounded-2xl p-6 sm:p-8 border border-gray-800 animate-fade-in-up"
+              style={{ animationDelay: "2.2s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Changes to This Privacy Policy
               </h2>
@@ -427,7 +452,10 @@ export default function PrivacyPolicy() {
             </section>
 
             {/* Contact Us */}
-            <section className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-2xl p-6 sm:p-8 border border-blue-800">
+            <section
+              className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-2xl p-6 sm:p-8 border border-blue-800 animate-fade-in-up"
+              style={{ animationDelay: "2.4s" }}
+            >
               <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-blue-400">
                 Contact Us
               </h2>
@@ -462,7 +490,10 @@ export default function PrivacyPolicy() {
           </div>
 
           {/* Footer Note */}
-          <div className="mt-12 text-center">
+          <div
+            className="mt-12 text-center animate-fade-in-up"
+            style={{ animationDelay: "2.6s" }}
+          >
             <p className="text-gray-400 text-sm">
               This Privacy Policy is effective as of the date listed above and
               applies to all information collected by SocialAdForge.

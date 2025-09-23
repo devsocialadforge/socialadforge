@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+// Removed Motion - using CSS animations instead
 import { ReactNode } from "react";
 
 interface SectionProps {
@@ -32,15 +32,11 @@ export default function Section({
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-100px" }}
+    <section
       id={id}
-      className={`relative w-full ${backgroundClasses[background]} ${paddingClasses[padding]} ${className}`}
+      className={`relative w-full ${backgroundClasses[background]} ${paddingClasses[padding]} ${className} animate-fade-in-up`}
     >
       <div className="max-w-7xl mx-auto">{children}</div>
-    </motion.section>
+    </section>
   );
 }

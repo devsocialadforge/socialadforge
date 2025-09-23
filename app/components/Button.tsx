@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+// Removed Motion - using CSS animations instead
 import { ReactNode } from "react";
 
 interface ButtonProps {
@@ -44,13 +44,9 @@ export default function Button({
   } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`;
 
   const content = (
-    <motion.span
-      whileHover={!disabled ? { scale: 1.05, y: -2 } : {}}
-      whileTap={!disabled ? { scale: 0.95 } : {}}
-      className="w-full h-full flex items-center justify-center"
-    >
+    <span className="w-full h-full flex items-center justify-center transform transition-all duration-200 hover:scale-105 hover:-translate-y-0.5 active:scale-95">
       {children}
-    </motion.span>
+    </span>
   );
 
   if (href) {

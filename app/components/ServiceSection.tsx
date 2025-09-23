@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+// Removed Motion - using CSS animations instead
 import Section from "./Section";
 import Card from "./Card";
 import Button from "./Button";
@@ -102,35 +102,23 @@ export default function ServiceSection() {
   return (
     <Section id="services" background="dark" className="py-4 md:py-20">
       <div className="text-center mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 animate-fade-in-up">
           What I Do
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-lg text-white/80 max-w-2xl mx-auto"
+        </h2>
+        <p
+          className="text-lg text-white/80 max-w-2xl mx-auto animate-fade-in-up"
+          style={{ animationDelay: "0.2s" }}
         >
           I help businesses grow their online presence through strategic digital
           marketing, creative design, and data-driven insights that deliver real
           results.
-        </motion.p>
+        </p>
       </div>
 
       {/* Carousel Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="mb-16"
+      <div
+        className="mb-16 animate-fade-in-up"
+        style={{ animationDelay: "0.4s" }}
       >
         <Carousel
           opts={{
@@ -147,23 +135,18 @@ export default function ServiceSection() {
           className="w-full max-w-7xl mx-auto"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {services.map((service) => {
+            {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
                 <CarouselItem
                   key={service.title}
                   className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                 >
-                  <motion.div
-                    whileHover={{
-                      y: -10,
-                      scale: 1.02,
-                      rotateY: 5,
-                      transition: { duration: 0.3 },
-                    }}
-                    className="group h-full"
-                  >
-                    <Card delay={0} className="h-full relative overflow-hidden">
+                  <div className="group h-full hover:-translate-y-2 hover:scale-102 hover:rotate-y-1 transition-all duration-300">
+                    <Card
+                      delay={index * 0.1}
+                      className="h-full relative overflow-hidden"
+                    >
                       {/* Gradient background overlay */}
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
@@ -205,12 +188,15 @@ export default function ServiceSection() {
 
                       {/* Hover effects */}
                       <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-300" />
-                      <div className="absolute bottom-4 left-4 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse delay-300 transition-opacity duration-300" />
+                      <div
+                        className="absolute bottom-4 left-4 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-300"
+                        style={{ animationDelay: "0.3s" }}
+                      />
 
                       {/* Border glow on hover */}
                       <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-blue-400/30 transition-all duration-300" />
                     </Card>
-                  </motion.div>
+                  </div>
                 </CarouselItem>
               );
             })}
@@ -218,19 +204,16 @@ export default function ServiceSection() {
           <CarouselPrevious className="hidden md:flex -left-12 border-white/20 bg-white/10 hover:bg-white/20 text-white" />
           <CarouselNext className="hidden md:flex -right-12 border-white/20 bg-white/10 hover:bg-white/20 text-white" />
         </Carousel>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="text-center"
+      <div
+        className="text-center animate-fade-in-up"
+        style={{ animationDelay: "0.6s" }}
       >
         <Button variant="primary" size="lg" href="#contact">
           Let&apos;s Work Together
         </Button>
-      </motion.div>
+      </div>
     </Section>
   );
 }

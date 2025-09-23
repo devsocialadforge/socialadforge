@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+// Removed Motion - using CSS animations instead
 import { ReactNode } from "react";
 
 interface CardProps {
@@ -16,15 +16,18 @@ export default function Card({
   hover = true,
   delay = 0,
 }: CardProps) {
+  const delayStyle = delay > 0 ? { animationDelay: `${delay}s` } : {};
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      whileHover={hover ? { y: -5, scale: 1.02 } : {}}
-      className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 ${className}`}
+    <div
+      style={delayStyle}
+      className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 animate-fade-in-up ${
+        hover
+          ? "hover:transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-out"
+          : ""
+      } ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

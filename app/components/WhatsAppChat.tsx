@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// Removed Framer Motion - using CSS animations instead
 import Image from "next/image";
 
 /**
@@ -136,185 +136,159 @@ export default function WhatsAppChat({
       aria-live="polite"
     >
       {/* Floating WhatsApp button - hidden when chat is open */}
-      <AnimatePresence>
-        {!isOpen && (
-          <motion.div
-            key="whatsapp-button"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className=" absolute bottom-0 right-0"
+      {!isOpen && (
+        <div className="absolute bottom-0 right-0 animate-in fade-in zoom-in-95 duration-200">
+          <button
+            type="button"
+            aria-label="Open WhatsApp chat"
+            onClick={() => {
+              setIsOpen(true);
+              setShowBadge(false);
+            }}
+            className="h-14 w-14 rounded-full bg-green-500 shadow-lg shadow-green-500/30 grid place-items-center text-white transform transition-all duration-100 hover:scale-105 active:scale-95"
           >
-            <motion.button
-              type="button"
-              aria-label="Open WhatsApp chat"
-              onClick={() => {
-                setIsOpen(true);
-                setShowBadge(false); // ensure badge hides immediately on open
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="h-14 w-14 rounded-full bg-green-500 shadow-lg shadow-green-500/30 grid place-items-center text-white"
-            >
-              <WhatsAppIcon className="h-7 w-7" />
-            </motion.button>
+            <WhatsAppIcon className="h-7 w-7" />
+          </button>
 
-            {/* Badge animation - visible only while button is visible */}
-            <AnimatePresence>
-              {showBadge && (
-                <motion.span
-                  initial={{ scale: 0, opacity: 0, y: 6 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  exit={{ scale: 0, opacity: 0, y: 6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 16 }}
-                  className={[
-                    "absolute -top-1 -right-1",
-                    !isRight && "-left-1 right-auto",
-                    "inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-bold text-white shadow",
-                  ].join(" ")}
-                  aria-label="New message"
-                >
-                  1
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {/* Badge animation - optimized for mobile */}
+          {showBadge && (
+            <span
+              className={[
+                "absolute -top-1 -right-1",
+                !isRight && "-left-1 right-auto",
+                "inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-bold text-white shadow",
+                "animate-in fade-in zoom-in-95 slide-in-from-bottom-1 duration-200",
+              ].join(" ")}
+              aria-label="New message"
+            >
+              1
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Chat popup */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="popup"
-            initial={{ opacity: 0, y: 12, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 260, damping: 22 }}
-            className={[
-              "mt-3 w-[min(92vw,320px)] overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-xl",
-            ].join(" ")}
-            role="dialog"
-            aria-modal="true"
-            aria-label="WhatsApp message"
-          >
-            {/* Header */}
-            <div className="flex items-center gap-3 px-4 py-3 bg-[#075E54] text-white">
-              <Image
-                src={profilePicture}
-                alt="Profile picture"
-                width={32}
-                height={32}
-                className="h-8 w-8 rounded-full object-cover"
-              />
-              <div className="flex-1">
-                <p className="text-sm font-semibold leading-tight">{name}</p>
-                <p className="text-[11px] opacity-80">online</p>
-              </div>
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  setShowBadge(false); // keep badge hidden after close
-                }}
-                aria-label="Close chat"
-                className="text-white/90 rounded-md p-1 transition-opacity hover:opacity-80"
-              >
-                <CloseIcon className="h-5 w-5" />
-              </button>
+      {isOpen && (
+        <div
+          className={[
+            "mt-3 w-[min(92vw,320px)] overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-xl",
+            "animate-in fade-in zoom-in-98 slide-in-from-bottom-3 duration-250",
+          ].join(" ")}
+          role="dialog"
+          aria-modal="true"
+          aria-label="WhatsApp message"
+        >
+          {/* Header */}
+          <div className="flex items-center gap-3 px-4 py-3 bg-[#075E54] text-white">
+            <Image
+              src={profilePicture}
+              alt="Profile picture"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-full object-cover"
+            />
+            <div className="flex-1">
+              <p className="text-sm font-semibold leading-tight">{name}</p>
+              <p className="text-[11px] opacity-80">online</p>
             </div>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                setShowBadge(false); // keep badge hidden after close
+              }}
+              aria-label="Close chat"
+              className="text-white/90 rounded-md p-1 transition-opacity hover:opacity-80"
+            >
+              <CloseIcon className="h-5 w-5" />
+            </button>
+          </div>
 
-            {/* Chat Messages */}
-            <div className="relative px-3 py-4 bg-[#ECE5DD] max-h-80 overflow-y-auto">
-              {chatMessages.map((msg) => (
+          {/* Chat Messages */}
+          <div className="relative px-3 py-4 bg-[#ECE5DD] max-h-80 overflow-y-auto">
+            {chatMessages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`mb-3 ${
+                  msg.isFromVisitor ? "flex justify-end" : "flex justify-start"
+                }`}
+              >
                 <div
-                  key={msg.id}
-                  className={`mb-3 ${
-                    msg.isFromVisitor
-                      ? "flex justify-end"
-                      : "flex justify-start"
+                  className={`max-w-[86%] ${
+                    msg.isFromVisitor ? "order-2" : "order-1"
                   }`}
                 >
                   <div
-                    className={`max-w-[86%] ${
-                      msg.isFromVisitor ? "order-2" : "order-1"
+                    className={`relative rounded-2xl px-3 py-2 shadow-sm ${
+                      msg.isFromVisitor
+                        ? "bg-[#DCF8C6] rounded-tr-md"
+                        : "bg-white rounded-tl-md"
                     }`}
                   >
+                    <p className="text-[13px] leading-snug text-slate-800">
+                      {msg.text}
+                    </p>
                     <div
-                      className={`relative rounded-2xl px-3 py-2 shadow-sm ${
-                        msg.isFromVisitor
-                          ? "bg-[#DCF8C6] rounded-tr-md"
-                          : "bg-white rounded-tl-md"
+                      className={`mt-1 flex items-center gap-1 text-[10px] text-slate-500 ${
+                        msg.isFromVisitor ? "justify-end" : "justify-start"
                       }`}
                     >
-                      <p className="text-[13px] leading-snug text-slate-800">
-                        {msg.text}
-                      </p>
-                      <div
-                        className={`mt-1 flex items-center gap-1 text-[10px] text-slate-500 ${
-                          msg.isFromVisitor ? "justify-end" : "justify-start"
-                        }`}
-                      >
-                        <span>{time || formatTime(msg.timestamp)}</span>
-                      </div>
-                      {/* Bubble tail */}
-                      <span
-                        className={`absolute h-3 w-3 rotate-45 ${
-                          msg.isFromVisitor
-                            ? "-right-1 bottom-0 bg-[#DCF8C6]"
-                            : "-left-1 bottom-0 bg-white"
-                        }`}
-                        aria-hidden
-                      />
+                      <span>{time || formatTime(msg.timestamp)}</span>
                     </div>
+                    {/* Bubble tail */}
+                    <span
+                      className={`absolute h-3 w-3 rotate-45 ${
+                        msg.isFromVisitor
+                          ? "-right-1 bottom-0 bg-[#DCF8C6]"
+                          : "-left-1 bottom-0 bg-white"
+                      }`}
+                      aria-hidden
+                    />
                   </div>
                 </div>
-              ))}
-
-              {/* Quick Reply Buttons (only when only the welcome exists) */}
-              {chatMessages.length <= 1 && (
-                <div className="space-y-2 mt-4">
-                  <p className="text-xs text-slate-600 text-center">
-                    Quick replies:
-                  </p>
-                  {quickReplies.map((reply, index) => (
-                    <motion.button
-                      key={index}
-                      onClick={() => handleQuickReply(reply)}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full text-left p-2 text-xs bg-white rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
-                    >
-                      {reply}
-                    </motion.button>
-                  ))}
-                </div>
-              )}
-
-              {/* Message Input */}
-              <div className="mt-4 flex gap-2">
-                <input
-                  type="text"
-                  value={visitorMessage}
-                  onChange={(e) => setVisitorMessage(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") handleSendMessage(visitorMessage);
-                  }}
-                  placeholder="Type your message..."
-                  className="flex-1 px-3 py-2 text-xs border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-                <motion.button
-                  onClick={() => handleSendMessage(visitorMessage)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  disabled={!visitorMessage.trim()}
-                  className="px-3 py-2 bg-green-500 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <SendIcon className="h-4 w-4" />
-                </motion.button>
               </div>
+            ))}
+
+            {/* Quick Reply Buttons (only when only the welcome exists) */}
+            {chatMessages.length <= 1 && (
+              <div className="space-y-2 mt-4">
+                <p className="text-xs text-slate-600 text-center">
+                  Quick replies:
+                </p>
+                {quickReplies.map((reply, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleQuickReply(reply)}
+                    className="w-full text-left p-2 text-xs bg-white rounded-lg border border-gray-200 hover:bg-gray-50 transition-all duration-150 transform hover:scale-[1.02] active:scale-98"
+                  >
+                    {reply}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Message Input */}
+            <div className="mt-4 flex gap-2">
+              <input
+                type="text"
+                value={visitorMessage}
+                onChange={(e) => setVisitorMessage(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSendMessage(visitorMessage);
+                }}
+                placeholder="Type your message..."
+                className="flex-1 px-3 py-2 text-xs border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+              <button
+                onClick={() => handleSendMessage(visitorMessage)}
+                disabled={!visitorMessage.trim()}
+                className="px-3 py-2 bg-green-500 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-150 transform hover:scale-105 active:scale-95"
+              >
+                <SendIcon className="h-4 w-4" />
+              </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

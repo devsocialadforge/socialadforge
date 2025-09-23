@@ -1,0 +1,27 @@
+{
+  "name": "SocialAdForge - Digital Marketing Solutions",
+  "short_name": "SocialAdForge",
+  "description": "Professional digital marketing services by Salmanul Faris. Expert in social media management, content creation, web development, and advertising campaigns.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "marketing", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}

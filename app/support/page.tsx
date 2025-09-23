@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+// Removed Motion - using CSS animations instead
 import { useState } from "react";
 import Section from "../components/Section";
 import Card from "../components/Card";
@@ -117,11 +117,7 @@ export default function FAQSection() {
       className="md:py-20 py-4 relative overflow-hidden"
     >
       <Link href="/#home">
-        <motion.button
-          className="flex items-center space-x-2 bg-gray-900/80 hover:bg-gray-800/90 backdrop-blur-sm border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
+        <button className="flex items-center space-x-2 bg-gray-900/80 hover:bg-gray-800/90 backdrop-blur-sm border border-gray-700 hover:border-gray-600 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium hover:scale-105 active:scale-95 animate-fade-in-up">
           <svg
             className="w-4 h-4"
             fill="none"
@@ -136,68 +132,33 @@ export default function FAQSection() {
             />
           </svg>
           <span>Back to Home</span>
-        </motion.button>
+        </button>
       </Link>
       {/* Background decorations */}
-      <motion.div
-        className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-pink-500/10 to-orange-500/10 rounded-full blur-xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.4, 0.7, 0.4],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
+      <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-float-1" />
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-pink-500/10 to-orange-500/10 rounded-full blur-xl animate-float-2" />
 
       <div className="text-center mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 animate-fade-in-up">
           Frequently Asked Questions
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-lg text-white/80 max-w-2xl mx-auto"
+        </h2>
+        <p
+          className="text-lg text-white/80 max-w-2xl mx-auto animate-fade-in-up"
+          style={{ animationDelay: "0.2s" }}
         >
           Find answers to common questions about our services, process, and
           support. Don&apos;t see your question? Feel free to reach out!
-        </motion.p>
+        </p>
       </div>
 
       <div className="space-y-8">
         {faqCategories.map((category, categoryIndex) => {
           const IconComponent = category.icon;
           return (
-            <motion.div
+            <div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              viewport={{ once: true }}
-              className="space-y-4"
+              className="space-y-4 animate-fade-in-up"
+              style={{ animationDelay: `${0.4 + categoryIndex * 0.1}s` }}
             >
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
@@ -217,70 +178,56 @@ export default function FAQSection() {
                       delay={itemIndex * 0.1}
                       className="cursor-pointer transition-all duration-300 hover:bg-white/10"
                     >
-                      <motion.div
+                      <div
                         onClick={() => toggleItem(categoryIndex, itemIndex)}
                         className="flex items-center justify-between"
                       >
                         <h4 className="text-lg font-semibold text-white pr-4">
                           {item.question}
                         </h4>
-                        <motion.div
-                          animate={{ rotate: isOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="flex-shrink-0"
+                        <div
+                          className={`flex-shrink-0 transition-transform duration-300 ${
+                            isOpen ? "rotate-180" : "rotate-0"
+                          }`}
                         >
                           <ChevronDown size={24} className="text-blue-400" />
-                        </motion.div>
-                      </motion.div>
+                        </div>
+                      </div>
 
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          height: isOpen ? "auto" : 0,
-                          opacity: isOpen ? 1 : 0,
-                        }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                        }`}
                       >
-                        <motion.div
-                          initial={{ y: -10 }}
-                          animate={{ y: isOpen ? 0 : -10 }}
-                          transition={{ duration: 0.3 }}
-                          className="pt-4"
-                        >
+                        <div className="pt-4">
                           <p className="text-white/80 leading-relaxed">
                             {item.answer}
                           </p>
-                        </motion.div>
-                      </motion.div>
+                        </div>
+                      </div>
                     </Card>
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="text-center mt-12"
+      <div
+        className="text-center mt-12 animate-fade-in-up"
+        style={{ animationDelay: "1.2s" }}
       >
         <p className="text-white/70 mb-6">
           Still have questions? We&apos;re here to help!
         </p>
-        <motion.a
+        <Link
           href="/#contact"
-          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
         >
           Contact Us Today
-        </motion.a>
-      </motion.div>
+        </Link>
+      </div>
     </Section>
   );
 }
