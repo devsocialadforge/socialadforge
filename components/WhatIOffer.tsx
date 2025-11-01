@@ -60,8 +60,8 @@ export default function WhatIOffer() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 80%",
-              end: "top 50%",
+              start: "top 60%",
+              end: "top 40%",
               toggleActions: "play none none none",
             },
           }
@@ -87,9 +87,9 @@ export default function WhatIOffer() {
         </div>
 
         {/* Services Grid */}
-        <div ref={cardsRef} className="grid grid-cols-2 gap-3 md:gap-5">
+        <div ref={cardsRef} className="grid grid-cols-2 gap-3 md:gap-10">
           {/* Digital Marketing Card */}
-          <Card className="service-card bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
+          <Card className="service-card bg-neutral-900/50 relative border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
             <CardHeader className="pb-3 md:pb-4">
               <div className="mb-2 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center">
                 <Megaphone className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
@@ -131,10 +131,11 @@ export default function WhatIOffer() {
                 </li>
               </ul>
             </CardContent>
+           <Image src="/images/tom-2.png" className="absolute hidden md:block  bottom-[-15] md:left-[-85] left-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
           </Card>
 
           {/* Website Development Card */}
-          <Card className="service-card bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
+          <Card className="service-card bg-neutral-900/50 relative border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
             <CardHeader className="pb-3 md:pb-4">
               <div className="mb-2 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center">
                 <Code className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
@@ -176,10 +177,11 @@ export default function WhatIOffer() {
                 </li>
               </ul>
             </CardContent>
+            <Image src="/images/jerry-2.png" className="absolute hidden md:block  bottom-[-15] md:right-[-85] right-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
           </Card>
 
           {/* Meta Ads Card */}
-          <Card className="service-card bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
+          <Card className="service-card relative bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
             <CardHeader className="pb-3 md:pb-4">
               <div className="mb-2 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center">
                 <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
@@ -221,10 +223,11 @@ export default function WhatIOffer() {
                 </li>
               </ul>
             </CardContent>
+            <Image src="/images/tom-2.png" className="absolute hidden md:block  bottom-[-15] md:left-[-85] left-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
           </Card>
 
           {/* Branding & Creatives Card */}
-          <Card className="service-card bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
+          <Card className="service-card relative bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
             <CardHeader className="pb-3 md:pb-4">
               <div className="mb-2 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center">
                 <Palette className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
@@ -266,6 +269,7 @@ export default function WhatIOffer() {
                 </li>
               </ul>
             </CardContent>
+            <Image src="/images/jerry-2.png" className="absolute hidden md:block  bottom-[-15] md:right-[-85] right-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
           </Card>
         </div>
        
