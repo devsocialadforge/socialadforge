@@ -94,18 +94,14 @@ if (window.innerWidth >= 640) { // 640px = Tailwind 'sm' breakpoint
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                 <a 
-                        href="https://wa.me/+919645551315" 
-                        
-                        aria-label="WhatsApp"
-                      > 
+               
                 <Button className="bg-emerald-500 hover:bg-emerald-600 transition-all duration-300">
                   
                  
                        Contact Me
                      
                 </Button>
-                </a>
+             
                 
                 {/* Social icons overlay */}
                 {isHovered && (
