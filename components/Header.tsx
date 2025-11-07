@@ -5,10 +5,13 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Header() {
+  const t = useTranslations('Header');
   const headerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -70,32 +73,33 @@ export default function Header() {
               href="#"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              Home
+              {t('home')}
             </a>
             <a
               href="#"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              Services
+              {t('services')}
             </a>
             <a
               href="#"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              Portfolio
+              {t('portfolio')}
             </a>
             <a
               href="#"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              About
+              {t('about')}
             </a>
             <a
               href="#"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              Contact
+              {t('contact')}
             </a>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -131,36 +135,39 @@ export default function Header() {
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Home
+                {t('home')}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Services
+                {t('services')}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Portfolio
+                {t('portfolio')}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                About
+                {t('about')}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contact
+                {t('contact')}
               </a>
+              <div className="pt-2">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         )}

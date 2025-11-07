@@ -1,0 +1,93 @@
+{
+  "HomePage": {
+    "title": "SocialAdForge",
+    "description": "Freelance digital marketing portfolio"
+  },
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "pricing": "Pricing",
+    "testimonials": "Testimonials"
+  },
+  "Hero": {
+    "label": "ABOUT PERSONAL",
+    "greeting": "Hello, I'm",
+    "name": "Salmanul Faris",
+    "description": "I build modern websites and growth systems: Next.js, Tailwind, shadcn/ui, SEO, and Meta Ads. Clean code, fast delivery, and results you can measure.",
+    "contactButton": "Contact Me",
+    "viewPortfolio": "View Portfolio",
+    "badges": {
+      "badge1": "Reliable & Quick Support",
+      "badge2": "Affordable Web Solutions",
+      "badge3": "On-Time Delivery Promise",
+      "badge4": "Client-First Approach",
+      "badge5": "100% Satisfaction Focus"
+    }
+  },
+  "Services": {
+    "sectionLabel": "Services",
+    "title": "What I",
+    "titleHighlight": "Offer",
+    "subtitle": "Comprehensive digital solutions to elevate your brand and drive measurable results",
+    
+    "digitalMarketing": {
+      "title": "Digital Marketing",
+      "description": "Grow your business with data-driven digital marketing strategies.",
+      "point1": "Attract real enquiries — not just followers or random traffic.",
+      "point2": "We solve low-visibility and low-lead problems for Indian brands.",
+      "point3": "Performance-focused approach with transparent tracking.",
+      "point4": "Strong audience targeting for local + national growth.",
+      "point5": "Trusted by startups, SMEs and service-based businesses.",
+      "point6": "Consistent results, clear reporting, ROI-focused execution.",
+      "point7": "Let's grow your business — start your marketing journey today."
+    },
+    
+    "websiteDevelopment": {
+      "title": "Website Development",
+      "description": "Build a modern, fast, and mobile-friendly website that converts.",
+      "point1": "Make your brand look premium and professional online.",
+      "point2": "We fix slow, outdated, low-conversion websites.",
+      "point3": "Clean design + strong UX + SEO-friendly structure.",
+      "point4": "Custom solutions for Indian businesses & entrepreneurs.",
+      "point5": "Performance tested, secure, and high-quality builds.",
+      "point6": "Clear messaging that increases trust and enquiries.",
+      "point7": "Start your website today — let's build your online identity."
+    },
+    
+    "metaAds": {
+      "title": "Meta Ads (Facebook & Instagram)",
+      "description": "Get high-quality leads and consistent sales through Meta Ads.",
+      "point1": "Reach the right audience with smart targeting & funnel ads.",
+      "point2": "Stop wasting budget on boost button or random clicks.",
+      "point3": "We fix low-lead, low-reach, low-conversion campaigns.",
+      "point4": "Industry-tested strategies for India-based businesses.",
+      "point5": "Regular monitoring, optimization, and performance reports.",
+      "point6": "Real results — leads, bookings, calls, conversions.",
+      "point7": "Ready to scale? Launch ROI-focused ads with us today."
+    },
+    
+    "branding": {
+      "title": "Branding & Creatives",
+      "description": "Build a brand identity that looks premium and trusted.",
+      "point1": "Clear messaging + strong visuals = more customers.",
+      "point2": "We fix weak brand look, low recall, and poor engagement.",
+      "point3": "High-quality creatives designed for modern Indian brands.",
+      "point4": "Unique style, professional tone, consistent identity.",
+      "point5": "Logos, brand kits, templates, social media creatives.",
+      "point6": "Brands that feel premium and emotionally connect.",
+      "point7": "Let's create a brand people trust — start your branding now."
+    }
+  },
+  "Skills": {
+    "webDesign": "Web Design",
+    "uiBranding": "UI Branding",
+    "metaAds": "Meta Ads",
+    "creatives": "Creatives"
+  }
+}
+
