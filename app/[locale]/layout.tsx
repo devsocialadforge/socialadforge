@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -17,11 +18,13 @@ export const generateStaticParams = () => [{ locale: "en" }, { locale: "ar" }];
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
-  children: React.ReactNode;
-  params: { locale: string };
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   setRequestLocale(locale);
   const messages = await getMessages({ locale });
 
