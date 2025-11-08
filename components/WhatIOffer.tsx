@@ -14,14 +14,16 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useTranslations } from 'next-intl';
+import { useTranslations , useLocale } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function WhatIOffer() {
   const t = useTranslations('Services');
   const cardsRef = useRef<HTMLDivElement>(null);
-  
+  const locale = useLocale();
+  const direction = locale === 'ar' ? 'rtl' : 'ltr';
+
   useGSAP(() => {
     if (!cardsRef.current) return;
 
@@ -73,7 +75,7 @@ export default function WhatIOffer() {
   }, { scope: cardsRef });
 
   return (
-    <section className="md:py-16">
+    <section dir={direction as "rtl" | "ltr"} className="md:py-16">
       <div className="space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
@@ -102,42 +104,43 @@ export default function WhatIOffer() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 hidden md:block pt-0">
-              <ul className="space-y-1 text-xs md:text-sm text-neutral-400">
+              <ul  className="space-y-1 text-xs md:text-sm  text-neutral-400">
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
-                  <span>{t('digitalMarketing.point1')}</span>
+                  <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
+                  <span >{t('digitalMarketing.point1')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('digitalMarketing.point2')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('digitalMarketing.point3')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('digitalMarketing.point4')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('digitalMarketing.point5')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('digitalMarketing.point6')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('digitalMarketing.point7')}</span>
                 </li>
               </ul>
             </CardContent>
-           <Image src="/images/tom-2.png" className="absolute hidden md:block  bottom-[-15] md:left-[-85] left-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
+            <Image src="/images/jerry-2.png" className={`absolute hidden ${direction === "ltr" ?"":"md:block"} bottom-[-15] md:right-[-85] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
+            <Image src="/images/tom-2.png" className={`absolute hidden ${direction === "ltr" ?"md:block":""} bottom-[-15] md:right-[185] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
           </Card>
 
           {/* Website Development Card */}
-          <Card className="service-card bg-neutral-900/50 relative border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
+          <Card className=" service-card  bg-neutral-900/50 relative border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
             <CardHeader className="pb-3 md:pb-4">
               <div className="mb-2 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center">
                 <Code className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
@@ -147,43 +150,45 @@ export default function WhatIOffer() {
                 {t('websiteDevelopment.description')}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2 hidden md:block pt-0">
+            <CardContent className="space-y-2 hidden ms-4 md:block pt-0">
               <ul className="space-y-1 text-xs md:text-sm text-neutral-400">
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
-                  <span>{t('websiteDevelopment.point1')}</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
+                  <span >{t('websiteDevelopment.point1')}h</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('websiteDevelopment.point2')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('websiteDevelopment.point3')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                            <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('websiteDevelopment.point4')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('websiteDevelopment.point5')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('websiteDevelopment.point6')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('websiteDevelopment.point7')}</span>
                 </li>
               </ul>
             </CardContent>
-            <Image src="/images/jerry-2.png" className="absolute hidden md:block  bottom-[-15] md:right-[-85] right-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
+            <Image src="/images/jerry-2.png" className={`absolute hidden ${direction === "ltr" ?"md:block":""} bottom-[-15] md:right-[-85] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
+
+              <Image src="/images/tom-2.png" className={`absolute hidden ${direction === "ltr" ?"":"md:block"} bottom-[-15] md:right-[185] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
           </Card>
 
           {/* Meta Ads Card */}
-          <Card className="service-card relative bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
+          <Card className=" service-card relative bg-neutral-900/50 border-neutral-800 hover:border-emerald-400/50 transition-all duration-300">
             <CardHeader className="pb-3 md:pb-4">
               <div className="mb-2 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center">
                 <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
@@ -196,36 +201,37 @@ export default function WhatIOffer() {
             <CardContent className="space-y-2 hidden md:block pt-0">
               <ul className="space-y-1 text-xs md:text-sm text-neutral-400">
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point1')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point2')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point3')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point4')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point5')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point6')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('metaAds.point7')}</span>
                 </li>
               </ul>
             </CardContent>
-            <Image src="/images/tom-2.png" className="absolute hidden md:block  bottom-[-15] md:left-[-85] left-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
+            <Image src="/images/jerry-2.png" className={`absolute hidden ${direction === "ltr" ?"":"md:block"} bottom-[-15] md:right-[-85] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
+            <Image src="/images/tom-2.png" className={`absolute hidden ${direction === "ltr" ?"md:block":""} bottom-[-15] md:right-[185] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
           </Card>
 
           {/* Branding & Creatives Card */}
@@ -242,36 +248,41 @@ export default function WhatIOffer() {
             <CardContent className="space-y-2 hidden md:block pt-0">
               <ul className="space-y-1 text-xs md:text-sm text-neutral-400">
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point1')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                          <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point2')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point3')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point4')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point5')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point6')}</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-emerald-400 mr-2">•</span>
+                  <span className={`text-emerald-400 ${direction === 'rtl' ? 'ml-3' : 'mr-3'}`}>•</span>
                   <span>{t('branding.point7')}</span>
                 </li>
               </ul>
             </CardContent>
-            <Image src="/images/jerry-2.png" className="absolute hidden md:block  bottom-[-15] md:right-[-85] right-[-55]  z-10" alt="Digital Marketing" width={500} height={500} />
+          
+              <Image src="/images/jerry-2.png" className={`absolute hidden ${direction === "ltr" ?"md:block":""} bottom-[-15] md:right-[-85] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
+
+              <Image src="/images/tom-2.png" className={`absolute hidden ${direction === "ltr" ?"":"md:block"} bottom-[-15] md:right-[185] right-[-55]  z-10`} alt="Digital Marketing" width={500} height={500} />
+            
+           
           </Card>
         </div>
        

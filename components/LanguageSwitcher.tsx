@@ -31,11 +31,11 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="fixed top-5 right-[80px] z-5100 flex items-center gap-2">
       <button
         onClick={() => switchLanguage('en')}
         disabled={isPending}
-        className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+        className={`px-2 md:px-3 py-1.5 text-sm rounded-md transition-colors ${
           currentLocale === 'en'
             ? 'bg-emerald-400 text-black font-medium'
             : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
@@ -46,7 +46,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => switchLanguage('ar')}
         disabled={isPending}
-        className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+        className={`px-2 md:px-3 py-1.5 text-sm rounded-md transition-colors ${
           currentLocale === 'ar'
             ? 'bg-emerald-400 text-black font-medium'
             : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'

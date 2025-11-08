@@ -3,6 +3,7 @@ import RingSkill from "@/components/RingSkill";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
 import WhatIOffer from "@/components/WhatIOffer";
+
 export const metadata: Metadata = {
   title: "SocialAdForge",
   description: "Freelance digital marketing portfolio.",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="text-neutral-200  bg-black">
+        
       
       <Header />
 

@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import LanguageSwitcher from './LanguageSwitcher';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,7 +99,9 @@ export default function Header() {
             >
               {t('contact')}
             </a>
-            <LanguageSwitcher />
+        
+           
+            
           </div>
 
           {/* Mobile Menu Button */}
@@ -165,9 +167,7 @@ export default function Header() {
               >
                 {t('contact')}
               </a>
-              <div className="pt-2">
-                <LanguageSwitcher />
-              </div>
+             
             </div>
           </div>
         )}
