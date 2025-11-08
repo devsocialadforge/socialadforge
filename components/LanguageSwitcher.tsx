@@ -35,9 +35,9 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => switchLanguage('en')}
         disabled={isPending}
-        className={`px-2 md:px-3 py-1.5 text-sm rounded-md transition-colors ${
+        className={`px-1.5 md:px-3 md:py-1.5 py-1 md:text-sm text-xs rounded-md transition-colors ${
           currentLocale === 'en'
-            ? 'bg-emerald-400 text-black font-medium'
+            ? 'bg-emerald-400 text-black md:font-medium font-normal'
             : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
         }`}
       >
@@ -46,9 +46,9 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => switchLanguage('ar')}
         disabled={isPending}
-        className={`px-2 md:px-3 py-1.5 text-sm rounded-md transition-colors ${
+        className={`px-1.5 md:px-3 md:py-1.5 py-1 md:text-sm text-xs rounded-md transition-colors ${
           currentLocale === 'ar'
-            ? 'bg-emerald-400 text-black font-medium'
+            ? 'bg-emerald-400 text-black md:font-medium font-normal'
             : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
         }`}
       >
