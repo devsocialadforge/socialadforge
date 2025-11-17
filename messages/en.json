@@ -18,7 +18,7 @@
     "label": "ABOUT PERSONAL",
     "greeting": "Hello, I'm",
     "name": "Salmanul Faris",
-    "description": "I build modern websites and growth systems: Next.js, Tailwind, shadcn/ui, SEO, and Meta Ads. Clean code, fast delivery, and results you can measure.",
+    "description": "I create high-performance websites and smart digital systems that help businesses grow. Every project is built with a focus on speed, clean design, and real results. From ideas to full online presence, I deliver solutions that look great, work fast, and drive measurable success.",
     "contactButton": "Contact Me",
     "viewPortfolio": "View Portfolio",
     "badges": {
@@ -88,6 +88,12 @@
     "uiBranding": "UI Branding",
     "metaAds": "Meta Ads",
     "creatives": "Creatives"
+  },
+  "Portfolio": {
+    "sectionLabel": "Trusted By",
+    "title": "Our",
+    "titleHighlight": "Clients",
+    "subtitle": "Proud to work with amazing brands and businesses"
   }
 }
 

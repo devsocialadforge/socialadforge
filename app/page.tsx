@@ -3,6 +3,7 @@ import RingSkill from "@/components/RingSkill";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
 import WhatIOffer from "@/components/WhatIOffer";
+import Portfolio from "@/components/Portfolio";
 
 export const metadata: Metadata = {
   title: "SocialAdForge",
@@ -32,10 +33,13 @@ export default function Home() {
        </div>
         </section>
         
-
+      
+      
+       
         <section aria-label="Map" className="max-w-7xl mx-auto p-2">
          <WhatIOffer/>
         </section>
+        <Portfolio/>
       </main>
 
       <footer className="border-t h-[500px] border-white/10">
