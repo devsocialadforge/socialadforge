@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 interface PageSpeedScores {
-  seo?: any;
+  seo: number | null;
   accessibility: number | null;
   bestPractices: number | null;
   performance: number | null;
@@ -60,10 +60,9 @@ export function usePagespeed(
         if ('error' in data && data.error) {
           throw new Error(data.error);
         }
-      
 
         setScores({
-          seo: data,
+          seo: data.seo,
           accessibility: data.accessibility,
           bestPractices: data.bestPractices,
           performance: data.performance,
