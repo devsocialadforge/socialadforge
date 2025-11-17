@@ -19,8 +19,8 @@ export default function Portfolio() {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
 
   return (
-    <section dir={direction as "rtl" | "ltr"} className="py-16 sm:py-20">
-      <div className="text-center space-y-2">
+    <section className="py-6 sm:py-12">
+      <div dir={direction as "rtl" | "ltr"} className="text-center space-y-2">
         <p className="text-xs tracking-[0.22em] text-neutral-400 uppercase">
           {t("sectionLabel")}
         </p>
@@ -73,17 +73,6 @@ export default function Portfolio() {
                             onClick={(e) => e.stopPropagation()}
                           >
                             Visit
-                          </a>
-                        )}
-                        {project.performanceLink && (
-                          <a
-                            href={project.performanceLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[0.6rem] px-2 py-1 rounded bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            Stats
                           </a>
                         )}
                       </div>

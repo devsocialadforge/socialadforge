@@ -94,6 +94,46 @@
     "title": "Our",
     "titleHighlight": "Clients",
     "subtitle": "Proud to work with amazing brands and businesses"
+  },
+  "Footer": {
+    "ctaLabel": "Let's work together",
+    "ctaTitle": "Ready to build your next growth engine?",
+    "ctaDescription": "Book a quick call to audit your current presence and plan a website, funnel, or ad system that actually converts.",
+    "ctaButton": "Book a discovery call",
+    "brandDescription": "Independent digital partner delivering high-performance websites, Meta ad systems, and brand identities for ambitious businesses in Kerala and UAE.",
+    "badge": {
+      "strategy": "Strategy-first",
+      "speed": "Speed optimized",
+      "scaling": "Built to scale"
+    },
+    "quickLinksTitle": "Navigation",
+    "serviceLinksTitle": "Services",
+    "links": {
+      "home": "Home",
+      "services": "Services",
+      "portfolio": "Portfolio",
+      "contact": "Contact"
+    },
+    "serviceLinks": {
+      "websites": "Website builds",
+      "marketing": "Digital marketing",
+      "ads": "Meta ads",
+      "branding": "Branding & creatives"
+    },
+    "contactTitle": "Let's chat",
+    "contactEmailLabel": "Email",
+    "contactPhoneLabel": "Phone",
+    "contactAddressLabel": "Studio",
+    "contactAddressValue": "Thrissur, Kerala | Dubai, UAE",
+    "contactHours": "Mon - Sat | 9:00 AM - 7:00 PM IST",
+    "followTitle": "Follow",
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "whatsapp": "WhatsApp"
+    },
+    "rights": "(c) 2025 SocialAdForge. All rights reserved.",
+    "madeIn": "Built with care in Kerala & UAE."
   }
 }
 
