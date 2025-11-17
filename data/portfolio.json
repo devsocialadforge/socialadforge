@@ -1,3 +1,30 @@
 [
-    
+  {
+    "name": "Avoacado Linen",
+    "slug": "avoacado-linen",
+    "logo": "/images/portfolio/avoacado-linen.png",
+    "link": "https://avocado-linen.vercel.app/",
+    "performanceLink": "https://pagespeed.web.dev/analysis/https-avocado-linen-vercel-app-civx6d94g0/g7aq8e7n9s?form_factor=desktop"
+  },
+  {
+    "name": "Madina Islamic Art",
+    "slug": "madina-islamic-art",
+    "logo": "/images/portfolio/madina-islamic-art.png",
+    "link": "https://madinaislamicart.vercel.app/",
+    "performanceLink": "https://pagespeed.web.dev/analysis/https-madinaislamicart-vercel-app-cs2g7t5m00/8yfv45466n?form_factor=desktop"
+  },
+  {
+    "name": "GS Technical Service",
+    "slug": "gs-technical-service",
+    "logo": "/images/portfolio/gs-technical-service.png",
+    "link": "https://www.gstechnicalservice.ae/",
+    "performanceLink": "https://pagespeed.web.dev/analysis/https-www-gstechnicalservice-ae-3x4tq37x1y/412w58823n?form_factor=desktop"
+  },
+  {
+    "name": "Care to Home",
+    "slug": "care-to-home",
+    "logo": "/images/portfolio/care-to-home.png",
+    "link": "https://www.caretohome.care/",
+    "performanceLink": "https://pagespeed.web.dev/analysis/https-www-caretohome-care/vr0au9s6ue?form_factor=desktop"
+  }
 ]
