@@ -3,6 +3,7 @@ import RingSkill from "@/components/RingSkill";
 import Header from "@/components/Header";
 import WhatIOffer from "@/components/WhatIOffer";
 import Portfolio from "@/components/Portfolio";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
@@ -69,6 +70,7 @@ export default function Home() {
           <WhatIOffer />
         </section>
         <Portfolio />
+        <Contact />
       </main>
 
       <Footer />

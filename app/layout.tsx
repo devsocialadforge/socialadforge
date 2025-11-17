@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = generateSEOMetadata({
   title: "SocialAdForge - Web Development & Digital Marketing in Kerala & UAE",
-  description: "Independent digital partner delivering high-performance websites, Meta ad systems, and brand identities for ambitious businesses in Kerala and UAE. Specializing in web development and Facebook/Instagram advertising in Dubai, Abu Dhabi, Sharjah, and Thrissur.",
+  description:
+    "Independent digital partner delivering high-performance websites, Meta ad systems, and brand identities for ambitious businesses in Kerala and UAE. Specializing in web development and Facebook/Instagram advertising in Dubai, Abu Dhabi, Sharjah, and Thrissur.",
   keywords: [
     "web developer Dubai UAE",
     "digital marketing Kerala",
@@ -42,7 +44,8 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-        <LanguageSwitcher />
+          <LanguageSwitcher />
+          <SmoothScroll />
           {children}
         </NextIntlClientProvider>
       </body>
