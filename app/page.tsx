@@ -1,18 +1,27 @@
+"use client";
 import Hero from "@/components/Hero";
 import RingSkill from "@/components/RingSkill";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
 import WhatIOffer from "@/components/WhatIOffer";
 import Portfolio from "@/components/Portfolio";
+import { usePagespeed } from "@/hooks/usePagespeed";
 
-export const metadata: Metadata = {
-  title: "SocialAdForge",
-  description: "Freelance digital marketing portfolio.",
-};
 
 
 
 export default function Home() {
+
+  const { seo, accessibility, bestPractices, performance, loading, error } = usePagespeed(
+    'https://www.caretohome.care/',
+    'mobile' // or 'desktop'
+  );
+  console.log( "seo", seo,);
+  console.log( "accessibility", accessibility,);
+  console.log( "bestPractices", bestPractices,);
+  console.log( "performance", performance,);
+  console.log( "loading", loading,);
+  console.log( "error", error,);
   return (
     <div className="text-neutral-200  bg-black">
         
