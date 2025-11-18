@@ -138,17 +138,42 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("idle");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      // Success
       setSubmitStatus("success");
       setFormData({ name: "", email: "", phone: "", message: "" });
 
+      // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
-      }, 3000);
-    }, 1500);
+      }, 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -412,6 +437,14 @@ export default function Contact() {
                 <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-4 text-center">
                   <p className="text-sm text-emerald-400">
                     {t("successMessage")}
+                  </p>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 text-center">
+                  <p className="text-sm text-red-400">
+                    {t("errorMessage") || "Failed to send message. Please try again."}
                   </p>
                 </div>
               )}

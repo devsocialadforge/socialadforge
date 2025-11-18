@@ -34,7 +34,7 @@
     "title": "What I",
     "titleHighlight": "Offer",
     "subtitle": "Comprehensive digital solutions to elevate your brand and drive measurable results",
-    
+
     "digitalMarketing": {
       "title": "Digital Marketing",
       "description": "Grow your business with data-driven digital marketing strategies.",
@@ -46,7 +46,7 @@
       "point6": "Consistent results, clear reporting, ROI-focused execution.",
       "point7": "Let's grow your business — start your marketing journey today."
     },
-    
+
     "websiteDevelopment": {
       "title": "Website Development",
       "description": "Build a modern, fast, and mobile-friendly website that converts.",
@@ -58,7 +58,7 @@
       "point6": "Clear messaging that increases trust and enquiries.",
       "point7": "Start your website today — let's build your online identity."
     },
-    
+
     "metaAds": {
       "title": "Meta Ads (Facebook & Instagram)",
       "description": "Get high-quality leads and consistent sales through Meta Ads.",
@@ -70,7 +70,7 @@
       "point6": "Real results — leads, bookings, calls, conversions.",
       "point7": "Ready to scale? Launch ROI-focused ads with us today."
     },
-    
+
     "branding": {
       "title": "Branding & Creatives",
       "description": "Build a brand identity that looks premium and trusted.",
@@ -105,7 +105,7 @@
     "locationLabel": "Our Location",
     "locationValue": "Thrissur, Kerala | Dubai, UAE",
     "socialTitle": "Connect on Social",
-    "availabilityTitle": "🚀 Ready to Start?",
+    "availabilityTitle": "Ready to Start?",
     "availabilityText": "We're available Monday to Saturday, 9:00 AM - 7:00 PM IST. Quick response guaranteed within 24 hours.",
     "availableNow": "Available Now",
     "formTitle": "Send us a message",
@@ -118,7 +118,8 @@
     "sendButton": "Send Message",
     "sending": "Sending...",
     "sent": "Message Sent!",
-    "successMessage": "Thank you! We'll get back to you within 24 hours."
+    "successMessage": "Thank you! We'll get back to you within 24 hours.",
+    "errorMessage": "Failed to send message. Please try again or contact us directly."
   },
   "Footer": {
     "ctaLabel": "Let's work together",
@@ -161,4 +162,3 @@
     "madeIn": "Built with care in Kerala & UAE."
   }
 }
-
