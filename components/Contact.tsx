@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Mail,
   Phone,
@@ -16,10 +19,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Contact() {
   const t = useTranslations("Contact");
   const locale = useLocale();
   const direction = locale === "ar" ? "rtl" : "ltr";
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const leftColumnRef = useRef<HTMLDivElement>(null);
+  const rightColumnRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -32,6 +41,100 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current) return;
+
+      const isMobile = window.innerWidth < 768;
+
+      // Animate header with velocity-based fade
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            end: "top 40%",
+            scrub: 1.2,
+          },
+          opacity: 0,
+          y: 80,
+          scale: 0.95,
+          stagger: 0.15,
+          ease: "power2.out",
+        });
+      }
+
+      // Animate left column (contact info) - slide from left
+      if (leftColumnRef.current && !isMobile) {
+        const contactCards = leftColumnRef.current.querySelectorAll(
+          ".contact-card"
+        );
+        gsap.from(contactCards, {
+          scrollTrigger: {
+            trigger: leftColumnRef.current,
+            start: "top 75%",
+            end: "top 35%",
+            scrub: 2,
+          },
+          x: -100,
+          opacity: 0,
+          stagger: 0.2,
+          ease: "power3.out",
+        });
+      }
+
+      // Animate right column (form) - slide from right with rotation
+      if (rightColumnRef.current && !isMobile) {
+        gsap.from(rightColumnRef.current, {
+          scrollTrigger: {
+            trigger: rightColumnRef.current,
+            start: "top 75%",
+            end: "top 35%",
+            scrub: 2,
+          },
+          x: 100,
+          opacity: 0,
+          rotationY: 15,
+          transformPerspective: 1000,
+          ease: "power3.out",
+        });
+      }
+
+      // Mobile animations - simple fade-in
+      if (isMobile) {
+        if (leftColumnRef.current) {
+          gsap.from(leftColumnRef.current.children, {
+            scrollTrigger: {
+              trigger: leftColumnRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+            opacity: 0,
+            y: 30,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        }
+
+        if (rightColumnRef.current) {
+          gsap.from(rightColumnRef.current, {
+            scrollTrigger: {
+              trigger: rightColumnRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+            opacity: 0,
+            y: 40,
+            duration: 1,
+            ease: "power2.out",
+          });
+        }
+      }
+    },
+    { scope: sectionRef }
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,6 +206,8 @@ export default function Contact() {
 
   return (
     <section
+      ref={sectionRef}
+      id="contact"
       dir={direction as "rtl" | "ltr"}
       className="relative bg-black py-20 overflow-hidden"
     >
@@ -114,7 +219,7 @@ export default function Contact() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-emerald-400 mb-4">
             {t("sectionLabel")}
           </p>
@@ -130,13 +235,13 @@ export default function Contact() {
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column - Contact Info & Social */}
-          <div className="space-y-8">
+          <div ref={leftColumnRef} className="space-y-8">
             {/* Contact Cards */}
             <div className="space-y-4">
               {contactInfo.map((item, index) => {
                 const Icon = item.icon;
                 const content = (
-                  <div className="group relative rounded-2xl border border-white/10 bg-linear-to-br from-neutral-900/50 to-neutral-900/20 p-6 transition-all duration-300 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-500/10">
+                  <div className="contact-card group relative rounded-2xl border border-white/10 bg-linear-to-br from-neutral-900/50 to-neutral-900/20 p-6 transition-all duration-300 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-500/10">
                     <div className="flex items-start gap-4">
                       <div className="rounded-xl bg-emerald-500/10 p-3 text-emerald-400 transition-transform duration-300 group-hover:scale-110">
                         <Icon className="h-6 w-6" />
@@ -164,7 +269,7 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div className="rounded-2xl border border-white/10 bg-linear-to-br from-neutral-900/50 to-neutral-900/20 p-6">
+            <div className="contact-card rounded-2xl border border-white/10 bg-linear-to-br from-neutral-900/50 to-neutral-900/20 p-6">
               <p className="text-xs uppercase tracking-[0.3em] text-neutral-500 mb-4">
                 {t("socialTitle")}
               </p>
@@ -191,7 +296,7 @@ export default function Contact() {
             </div>
 
             {/* Additional Info Card */}
-            <div className="rounded-2xl border border-emerald-500/20 bg-linear-to-br from-emerald-500/5 to-emerald-500/0 p-6">
+            <div className="contact-card rounded-2xl border border-emerald-500/20 bg-linear-to-br from-emerald-500/5 to-emerald-500/0 p-6">
               <h3 className="text-lg font-semibold text-neutral-100 mb-3">
                 {t("availabilityTitle")}
               </h3>
@@ -206,7 +311,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="rounded-3xl border border-white/10 bg-linear-to-br from-neutral-900/70 to-neutral-900/30 p-8 lg:p-10">
+          <div ref={rightColumnRef} className="rounded-3xl border border-white/10 bg-linear-to-br from-neutral-900/70 to-neutral-900/30 p-8 lg:p-10">
             <h3 className="text-2xl font-semibold text-neutral-100 mb-6">
               {t("formTitle")}
             </h3>

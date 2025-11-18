@@ -86,7 +86,7 @@ export default function Footer() {
           </Button>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid allh md:grid-cols-3   w-full gap-3">
           <div className="space-y-4 text-neutral-300">
             <p className="text-xl font-semibold text-neutral-50">
               SocialAdForge
@@ -94,7 +94,7 @@ export default function Footer() {
             <p className="text-sm leading-relaxed text-neutral-400">
               {t("brandDescription")}
             </p>
-            <div className="flex flex-wrap gap-2 text-[0.65rem] uppercase tracking-wide text-neutral-500">
+            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-neutral-500">
               <span className="rounded-full border border-white/10 px-3 py-1">
                 {t("badge.strategy")}
               </span>
@@ -106,7 +106,7 @@ export default function Footer() {
               </span>
             </div>
           </div>
-
+           <div className="grid grid-cols-2 gap-3">
           <div className="space-y-4 text-sm">
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
               {t("quickLinksTitle")}
@@ -142,6 +142,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+           </div>
 
           <div className="space-y-4 text-sm text-neutral-300">
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
@@ -210,7 +211,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 text-xs text-neutral-500">
+        <div className="border-t text-center md:text-start border-white/5 pt-6 text-xs  text-neutral-500">
           <div
             className={`flex flex-col gap-4 md:flex-row md:items-center md:justify-between ${
               direction === "rtl" ? "md:flex-row-reverse" : ""

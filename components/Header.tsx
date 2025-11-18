@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
-
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Header() {
-  const t = useTranslations('Header');
+  const t = useTranslations("Header");
   const headerRef = useRef<HTMLElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -70,42 +69,39 @@ export default function Header() {
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
             <a
-              href="#"
+              href="#home"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              {t('home')}
+              {t("home")}
             </a>
             <a
-              href="#"
+              href="#services"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              {t('services')}
+              {t("services")}
             </a>
             <a
-              href="#"
+              href="#portfolio"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              {t('portfolio')}
+              {t("portfolio")}
             </a>
             <a
-              href="#"
+              href="#about"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              {t('about')}
+              {t("about")}
             </a>
             <a
-              href="#"
+              href="#contact"
               className="text-neutral-300 hover:text-white transition-colors"
             >
-              {t('contact')}
+              {t("contact")}
             </a>
-        
-           
-            
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-neutral-200 hover:text-white transition-colors"
             aria-label="Toggle menu"
@@ -137,37 +133,36 @@ export default function Header() {
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('home')}
+                {t("home")}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('services')}
+                {t("services")}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('portfolio')}
+                {t("portfolio")}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('about')}
+                {t("about")}
               </a>
               <a
                 href="#"
                 className="text-neutral-300 hover:text-white transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('contact')}
+                {t("contact")}
               </a>
-             
             </div>
           </div>
         )}
@@ -175,4 +170,3 @@ export default function Header() {
     </header>
   );
 }
-

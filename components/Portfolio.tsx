@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { useTranslations, useLocale } from "next-intl";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Carousel,
   CarouselContent,
@@ -11,16 +14,64 @@ import {
 } from "@/components/ui/carousel";
 import portfolioData from "@/data/portfolio.json";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Portfolio() {
   const t = useTranslations("Portfolio");
   const locale = useLocale();
   const direction = locale === "ar" ? "rtl" : "ltr";
 
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current) return;
+
+      const isMobile = window.innerWidth < 768;
+
+      // Animate header with scale and fade
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            end: "top 30%",
+            scrub: 1,
+          },
+          opacity: 0,
+          y: 50,
+          scale: 0.9,
+          stagger: 0.1,
+          ease: "power2.out",
+        });
+      }
+
+      // Animate carousel with slide and fade
+      if (carouselRef.current && !isMobile) {
+        gsap.from(carouselRef.current, {
+          scrollTrigger: {
+            trigger: carouselRef.current,
+            start: "top 80%",
+            end: "top 40%",
+            scrub: 1.5,
+          },
+          opacity: 0,
+          y: 100,
+          rotationX: 15,
+          transformPerspective: 1000,
+          ease: "power3.out",
+        });
+      }
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section className="py-6 sm:py-12">
-      <div dir={direction as "rtl" | "ltr"} className="text-center space-y-2">
+    <section ref={sectionRef} id="portfolio" className="py-6 sm:py-12">
+      <div ref={headerRef} dir={direction as "rtl" | "ltr"} className="text-center space-y-2">
         <p className="text-xs tracking-[0.22em] text-neutral-400 uppercase">
           {t("sectionLabel")}
         </p>
@@ -33,7 +84,7 @@ export default function Portfolio() {
         </p>
       </div>
 
-      <div className="mx-auto mt-12 max-w-4xl px-12">
+      <div ref={carouselRef} className="mx-auto mt-12 max-w-4xl px-12">
         <Carousel
           plugins={[plugin.current]}
           className="w-full"
