@@ -7,14 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Code,
-  Sparkles,
-  Layout,
-  BarChart3,
-  Palette,
-  Megaphone,
-} from "lucide-react";
+import { Code, BarChart3, Palette, Megaphone } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";

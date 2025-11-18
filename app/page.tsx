@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import RingSkill from "@/components/RingSkill";
 import Header from "@/components/Header";
 import WhatIOffer from "@/components/WhatIOffer";
 import Portfolio from "@/components/Portfolio";

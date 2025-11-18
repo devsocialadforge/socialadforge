@@ -12,7 +12,7 @@ import gsap from "gsap";
 import { SplitText, ScrollTrigger } from "gsap/all";
 import { useState, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
-
+import Image from "next/image";
 // Drop this file into: app/components/HeroDark.tsx (Next.js App Router)
 // Usage: <HeroDark />
 // If you're not using shadcn yet, replace Button with a standard <button>.
@@ -31,7 +31,7 @@ export default function Hero() {
 
       let heroSplit: SplitText | null = null;
       let paragraphSplit: SplitText | null = null;
-      const scrollTriggers: any[] = [];
+      const scrollTriggers: ScrollTrigger[] = [];
 
       // Skip SplitText for RTL languages to avoid character order issues
       if (isRTL) {
@@ -123,10 +123,12 @@ export default function Hero() {
           <div className="relative order-1 right-leaf md:order-none">
             <div className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl  ">
               {/* Portrait (replace src with your image). In Next.js: use next/image if you prefer */}
-              <img
+              <Image
                 src="/images/hero-portrait.webp"
                 alt="Portrait"
                 className="h-full w-full object-cover object-center opacity-90"
+                width={500}
+                height={500}
               />
             </div>
           </div>

@@ -2,8 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
+interface LenisInstance {
+  raf: (time: number) => void;
+  destroy: () => void;
+}
+
 export default function SmoothScroll() {
-  const lenisRef = useRef<any>(null);
+  const lenisRef = useRef<LenisInstance | null>(null);
 
   useEffect(() => {
     let rafId: number;
