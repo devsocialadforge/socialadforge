@@ -67,9 +67,8 @@ export default function Contact() {
 
       // Animate left column (contact info) - slide from left
       if (leftColumnRef.current && !isMobile) {
-        const contactCards = leftColumnRef.current.querySelectorAll(
-          ".contact-card"
-        );
+        const contactCards =
+          leftColumnRef.current.querySelectorAll(".contact-card");
         gsap.from(contactCards, {
           scrollTrigger: {
             trigger: leftColumnRef.current,
@@ -237,17 +236,18 @@ export default function Contact() {
           {/* Left Column - Contact Info & Social */}
           <div ref={leftColumnRef} className="space-y-8">
             {/* Contact Cards */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {contactInfo.map((item, index) => {
                 const Icon = item.icon;
-                const content = (
+
+                const contactCard = (
                   <div className="contact-card group relative rounded-2xl border border-white/10 bg-linear-to-br from-neutral-900/50 to-neutral-900/20 p-6 transition-all duration-300 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-500/10">
                     <div className="flex items-start gap-4">
                       <div className="rounded-xl bg-emerald-500/10 p-3 text-emerald-400 transition-transform duration-300 group-hover:scale-110">
                         <Icon className="h-6 w-6" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-xs uppercase tracking-wide text-neutral-500 mb-1">
+                        <p className="text-xs uppercase tracking-wide text-neutral-500">
                           {item.label}
                         </p>
                         <p className="text-base text-neutral-200 group-hover:text-emerald-400 transition-colors">
@@ -260,10 +260,10 @@ export default function Contact() {
 
                 return item.href ? (
                   <a key={index} href={item.href} className="block">
-                    {content}
+                    {contactCard}
                   </a>
                 ) : (
-                  <div key={index}>{content}</div>
+                  <div key={index}>{contactCard}</div>
                 );
               })}
             </div>
@@ -311,7 +311,10 @@ export default function Contact() {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div ref={rightColumnRef} className="rounded-3xl border border-white/10 bg-linear-to-br from-neutral-900/70 to-neutral-900/30 p-8 lg:p-10">
+          <div
+            ref={rightColumnRef}
+            className="rounded-3xl border border-white/10 bg-linear-to-br from-neutral-900/70 to-neutral-900/30 p-8 lg:p-10"
+          >
             <h3 className="text-2xl font-semibold text-neutral-100 mb-6">
               {t("formTitle")}
             </h3>
