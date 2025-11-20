@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
-export default function manifest(): MetadataRoute.Manifest {
-  return {
+export async function GET() {
+  const manifest: MetadataRoute.Manifest = {
     name: "SocialAdForge - Web Development & Digital Marketing",
     short_name: "SocialAdForge",
     description:
@@ -18,13 +18,13 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/x-icon",
       },
       {
-        src: "/images/logo.png",
+        src: "/icon1.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "maskable",
       },
       {
-        src: "/images/logo.png",
+        src: "/icon1.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
@@ -34,4 +34,6 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en",
     dir: "ltr",
   };
+
+  return Response.json(manifest);
 }
