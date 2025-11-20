@@ -55,7 +55,7 @@ export default function Header() {
           {/* Logo and Brand Name */}
           <div className="flex items-center gap-3">
             <Image
-              src="/images/logo.png"
+              src="/icon1.png"
               alt="SocialAdForge Logo"
               width={40}
               height={40}

@@ -41,6 +41,7 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useGSAP(
     () => {
@@ -139,6 +140,7 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrorMessage("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -152,7 +154,18 @@ export default function Contact() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
+        // Show the error message from the API
+        const errorMsg = data.error || "Failed to send message";
+        const errorDetails = data.details ? ` (${data.details})` : "";
+        setErrorMessage(errorMsg + errorDetails);
+        setSubmitStatus("error");
+
+        // Reset error message after 7 seconds
+        setTimeout(() => {
+          setSubmitStatus("idle");
+          setErrorMessage("");
+        }, 7000);
+        return;
       }
 
       // Success
@@ -165,12 +178,18 @@ export default function Contact() {
       }, 5000);
     } catch (error) {
       console.error("Error submitting form:", error);
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Network error. Please check your connection and try again."
+      );
       setSubmitStatus("error");
 
-      // Reset error message after 5 seconds
+      // Reset error message after 7 seconds
       setTimeout(() => {
         setSubmitStatus("idle");
-      }, 5000);
+        setErrorMessage("");
+      }, 7000);
     } finally {
       setIsSubmitting(false);
     }
@@ -444,7 +463,9 @@ export default function Contact() {
               {submitStatus === "error" && (
                 <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 text-center">
                   <p className="text-sm text-red-400">
-                    {t("errorMessage") || "Failed to send message. Please try again."}
+                    {errorMessage ||
+                      t("errorMessage") ||
+                      "Failed to send message. Please try again."}
                   </p>
                 </div>
               )}

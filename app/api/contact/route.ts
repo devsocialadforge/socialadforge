@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 // Email validation regex
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,23 +39,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Check for required environment variables
-    const {
-      EMAIL_HOST,
-      EMAIL_PORT,
-      EMAIL_USER,
-      EMAIL_PASSWORD,
-      EMAIL_FROM,
-      EMAIL_TO,
-    } = process.env;
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const EMAIL_FROM = process.env.EMAIL_FROM;
+    const EMAIL_TO = process.env.EMAIL_TO;
 
-    if (
-      !EMAIL_HOST ||
-      !EMAIL_PORT ||
-      !EMAIL_USER ||
-      !EMAIL_PASSWORD ||
-      !EMAIL_FROM ||
-      !EMAIL_TO
-    ) {
+    if (!RESEND_API_KEY || !EMAIL_FROM || !EMAIL_TO) {
       console.error("Missing email configuration in environment variables");
       return NextResponse.json(
         { error: "Email service is not configured properly." },
@@ -63,22 +51,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      host: EMAIL_HOST,
-      port: parseInt(EMAIL_PORT),
-      secure: parseInt(EMAIL_PORT) === 465, // true for 465, false for other ports
-      auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASSWORD,
-      },
-    });
+    // Initialize Resend
+    const resend = new Resend(RESEND_API_KEY);
 
-    // Verify transporter configuration
-    await transporter.verify();
-
-    // Email content
-    const mailOptions = {
+    // Send email using Resend
+    const { error } = await resend.emails.send({
       from: `"${name}" <${EMAIL_FROM}>`,
       to: EMAIL_TO,
       replyTo: email,
@@ -224,10 +201,18 @@ ${message}
 ---
 Received on ${new Date().toLocaleString()}
       `,
-    };
+    });
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    if (error) {
+      console.error("Error sending email:", error);
+      return NextResponse.json(
+        {
+          error: "Failed to send email. Please try again later.",
+          details: error.message,
+        },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       { message: "Email sent successfully!" },
@@ -244,4 +229,3 @@ Received on ${new Date().toLocaleString()}
     );
   }
 }
-
