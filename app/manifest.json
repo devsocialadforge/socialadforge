@@ -1,0 +1,29 @@
+{
+  "name": "SocialAdForge - Web Development & Digital Marketing",
+  "short_name": "SocialAdForge",
+  "description": "Independent digital partner delivering high-performance websites, Meta ad systems, and brand identities for ambitious businesses in Kerala and UAE.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/icon1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon0.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
