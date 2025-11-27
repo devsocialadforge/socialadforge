@@ -208,8 +208,8 @@ export default function Contact() {
     {
       icon: Mail,
       label: t("emailLabel"),
-      value: "socialadforge@gmail.com",
-      href: "mailto:socialadforge@gmail.com",
+      value: " contact@socialadforge.com",
+      href: "mailto:contact@socialadforge.com",
     },
     {
       icon: Phone,

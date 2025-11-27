@@ -186,14 +186,14 @@ export default function Hero() {
                         <MessageCircle className="text-emerald-400" size={20} />
                       </a>
                       <a
-                        href="mailto:socialadforge@gmail.com"
+                        href="mailto:contact@socialadforge.com"
                         className="p-2 hover:bg-white rounded-md transition-colors"
                         aria-label="Email"
                       >
                         <Mail className="text-emerald-400" size={20} />
                       </a>
                       <a
-                        href="https://instagram.com/YOUR_USERNAME"
+                        href="https://instagram.com/socialadforge"
                         className="p-2 hover:bg-white rounded-md transition-colors"
                         aria-label="Instagram"
                       >
@@ -208,22 +208,6 @@ export default function Hero() {
                 className="text-sm text-neutral-300 underline-offset-4 hover:underline"
               >
                 {t("viewPortfolio")}
-              </a>
-            </div>
-            {/* Social icons */}
-            <div
-              className={`mt-6 flex items-center gap-4 text-neutral-400 ${
-                isRTL ? "justify-end" : ""
-              }`}
-            >
-              <a href="#" aria-label="Twitter" className="hover:text-white">
-                <Twitter size={18} />
-              </a>
-              <a href="#" aria-label="Facebook" className="hover:text-white">
-                <Facebook size={18} />
-              </a>
-              <a href="#" aria-label="Instagram" className="hover:text-white">
-                <Instagram size={18} />
               </a>
             </div>
           </div>
