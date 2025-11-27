@@ -15,7 +15,25 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/opengraph-image",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
         source: "/twitter-image.png",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/twitter-image",
         headers: [
           {
             key: "Cache-Control",

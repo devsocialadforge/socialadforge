@@ -19,7 +19,7 @@ export function generateMetadata({
   keywords = [],
   path = "",
   locale = "en",
-  image = "/images/og-image.jpg",
+  image = "/opengraph-image.png",
   type = "website",
   noIndex = false,
 }: SEOProps): Metadata {
