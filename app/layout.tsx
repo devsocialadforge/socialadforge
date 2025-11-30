@@ -6,6 +6,7 @@ import { getMessages } from "next-intl/server";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import SmoothScroll from "@/components/SmoothScroll";
+import MetaPixel from "@/components/MetaPixel";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
+          <MetaPixel />
           <LanguageSwitcher />
           <SmoothScroll />
           {children}
