@@ -2,8 +2,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Instagram,
-  Facebook,
-  Twitter,
   Mail,
   MessageCircle,
 } from "lucide-react";

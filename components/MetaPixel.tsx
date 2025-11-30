@@ -6,13 +6,20 @@ import Script from "next/script";
 
 export const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
 
+// Declare fbq type for TypeScript
+declare global {
+  interface Window {
+    fbq?: (action: string, event: string) => void;
+  }
+}
+
 export default function MetaPixel() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (FB_PIXEL_ID && (window as any).fbq) {
-      (window as any).fbq("track", "PageView");
+    if (FB_PIXEL_ID && window.fbq) {
+      window.fbq("track", "PageView");
     }
   }, [pathname, searchParams]);
 
